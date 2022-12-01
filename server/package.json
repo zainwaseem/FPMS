@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "Factory production management system",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon server.js"
   },
   "author": "Zain Waseem",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.4"
   }
 }
