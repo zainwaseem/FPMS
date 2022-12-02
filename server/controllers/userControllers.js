@@ -39,7 +39,7 @@ const login = async (req, res, next) => {
     const isMatchedPassword = await bcrypt.compare(password, user.password);
     if (!isMatchedPassword) {
       return res.json({
-        message: "Password is not correct",
+        message: "Email and Password is not correct",
       });
     }
     console.log(`matched`);
@@ -48,7 +48,7 @@ const login = async (req, res, next) => {
     });
 
     res.cookie("token", token, { httpOnly: true }).json({
-      token: `you are loggd in`,
+      token: `you are logged in`,
     });
   } catch (error) {
     next(error);
@@ -65,10 +65,11 @@ const getALLUsers = async (req, res) => {
 };
 
 const logout = async (req, res) => {
+  console.log(`cleared`);
   return res
     .clearCookie("token")
     .status(200)
-    .json({ message: "Successfully logged out 😏 🍀" });
+    .json({ message: "Successfully logged out 😏" });
 };
 
 export { register, login, getALLUsers, logout };
