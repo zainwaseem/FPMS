@@ -2,12 +2,12 @@ import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const register = async (req, res, next) => {
+const register = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
     if (!name || !email || !password) {
       return res.json({
-        message: "please fill all fields",
+        message: "Please fill all fields",
       });
     }
     if (password.length < 8) {
@@ -46,7 +46,7 @@ const login = async (req, res, next) => {
     const user = await User.findOne({ email });
     if (!user) {
       return res.json({
-        message: "user not registered",
+        message: "User not registered",
       });
     }
     const isMatchedPassword = await bcrypt.compare(password, user.password);
@@ -65,15 +65,15 @@ const login = async (req, res, next) => {
       token: `you are logged in`,
     });
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
 const getALLUsers = async (req, res) => {
   try {
     const users = await User.find();
-    res.json(users);
+    return res.json(users);
   } catch (error) {
-    next(error);
+    // next(error);
     console.log(error);
   }
 };
@@ -89,6 +89,39 @@ const logout = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    return res.json(user);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const updateUser = async (req, res) => {
+  const { name, role, email, password } = req.body;
+  const hashpass = await bcrypt.hash(password, 10);
+  console.log(hashpass);
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, {
+      name,
+      email,
+      password: hashpass,
+      role,
+    });
+    return res.json(updatedUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
+const deleteUser = async (req, res) => {
+  try {
+    const daletedUser = await User.findByIdAndDelete(req.params.id);
+    return res.json(daletedUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
 const loggedIn = async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -103,4 +136,13 @@ const loggedIn = async (req, res) => {
     res.json(false);
   }
 };
-export { register, login, getALLUsers, logout, loggedIn };
+export {
+  register,
+  login,
+  getALLUsers,
+  logout,
+  getUser,
+  updateUser,
+  deleteUser,
+  loggedIn,
+};
