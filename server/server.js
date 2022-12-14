@@ -19,11 +19,6 @@ app.use(express.json());
 app.use(cookieParser());
 connectDB();
 
-// app.use((err, req, res, next) => {
-//   res.json({
-//     error: err.stack,
-//   });
-// });
 
 //Routes
 app.use("/", userRoutes);
