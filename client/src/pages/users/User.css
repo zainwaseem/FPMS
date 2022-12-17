@@ -21,11 +21,24 @@
   width: inherit;
   height: inherit;
   border-radius: 40px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.card .AddButton {
+  width: inherit;
+  height: inherit;
+  font-size: 10rem;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .card .card_image img {
-  width: inherit;
-  height: inherit;
+  width: 50%;
+  height: 50%;
+
   /* border-top-left-radius: 40px; */
   /* border-top-right-radius: 40px; */
   border-radius: 40px 40px 0px 0px;
@@ -45,8 +58,7 @@
 
 .card:hover {
   transform: scale(0.9, 0.9);
-  box-shadow: 5px 5px 30px 15px #234567,
-    -5px -5px 30px 15px #b1dae7bb;
+  box-shadow: 5px 5px 30px 15px #234567ab, -5px -5px 30px 15px #b1dae7bb;
 }
 
 .title-white {

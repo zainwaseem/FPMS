@@ -1,29 +1,83 @@
-
+import axios from "axios";
+import { useState } from "react";
+import "./Mode.css";
 
 const Model = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, seterror] = useState(false);
+  const [message, setMessage] = useState(``);
+  const handleLogin = async (e) => {
+    console.log(`usered added`);
+    e.preventDefault();
+    seterror(false);
+    try {
+      const res = await axios.post("http://localhost:5000/register", {
+        email,
+        password,
+      });
+      if (res.data.message) {
+        seterror(true);
+        setMessage(res.data.message);
+      }
+      if (res.data.token) {
+        console.log(res.data.token);
+        res.data && window.location.replace("/");
+      }
+    } catch (error) {
+      seterror(true);
+    }
+    setInterval(() => {
+      seterror(false);
+    }, 5000);
+  };
   return (
     <>
-      <a class="button" href="#openModal">Open it up!</a>
+      <div class="wrapper">
+        <a href="#demo-modal">Add user</a>
+      </div>
 
-<div id="openModal" class="modalbg">
-  <div class="dialog">
-    <a href="#close" title="Close" class="close">X</a>
-  	<h2>Holy Crap!!!</h2>
-		<p>You freakin' did it!</p>
-		<p>You opened up the freakin' modal window! Now close it, ya dingus.</p>
-    <p class="fineprint">Based on the article "Creating a modal window with HTML5 & CSS3" at <a href="webdesignerdepot.com">Webdesigner Depot</a></p>
-    <p class="fineprint">p.s. Sorry for calling you a dingus earlier.</p>
-	</div>
-</div>
+      <div id="demo-modal" class="modal">
+        <div class="modal__content">
+          <div class="modal__footer">
+            {/* <i class="fa fa-heart"></i> */}
+            {/* <div className="login"> */}
+            <span className="loginTitle">Add User</span>
+            <form className="loginForm">
+              <label>Email</label>
+              <input
+                type="text"
+                value={email}
+                className="loginInput"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your Email..."
+              />
+              <label>Password</label>
+              <input
+                type="pasword"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="loginInput"
+                placeholder="Your password..."
+              />
+              <button className="loginButton" onClick={handleLogin}>
+                Add
+              </button>
+              <p style={{ color: "red" }}>{error && message}</p>
+            </form>
+          </div>
+          {/* </div> */}
+
+          <a href="#" class="modal__close">
+            &times;
+          </a>
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Model
-
-
-
-
+export default Model;
 
 // import React from "react";
 

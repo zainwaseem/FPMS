@@ -1,7 +1,5 @@
-
 .login {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: Times, serif;
   height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
@@ -21,7 +19,7 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  padding: 40px;
+  padding: 50px;
   border-radius: 10px;
   background-color: #b1dae7;
 }
@@ -31,7 +29,7 @@
 }
 .loginForm > input {
   border-radius: 10px;
-  margin: 5px 0;
+  margin: 5px;
   outline: none;
 }
 .loginInput {

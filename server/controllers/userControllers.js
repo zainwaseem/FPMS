@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 const register = async (req, res) => {
   try {
@@ -24,11 +25,11 @@ const register = async (req, res) => {
     const newUser = new User({
       name,
       email,
-      password: hashpass,
+      password,
       role,
     });
     const user = await newUser.save();
-    res.status(200).json(user);
+    res.status(200).json({ message: `User Added Successfully` });
   } catch (error) {
     // next(error);
     console.log(error);
@@ -115,9 +116,15 @@ const updateUser = async (req, res) => {
   }
 };
 const deleteUser = async (req, res) => {
+  // const { _id } = req.params.id;
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.status(404).json({ message: "No user found with this userID" });
+  }
+
   try {
     const daletedUser = await User.findByIdAndDelete(req.params.id);
-    return res.json(daletedUser);
+    console.log(deleteUser);
+    return res.json({ message: `User has been deleted` });
   } catch (error) {
     console.log(error);
   }
