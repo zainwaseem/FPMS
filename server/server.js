@@ -19,6 +19,17 @@ app.use(express.json());
 app.use(cookieParser());
 connectDB();
 
+// Error Handling
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.status || "something went wrong!";
+
+  return res.status(status).json({
+    success: false,
+    status,
+    message,
+  });
+});
 
 //Routes
 app.use("/", userRoutes);

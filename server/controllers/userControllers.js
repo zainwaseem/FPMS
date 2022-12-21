@@ -1,14 +1,14 @@
 import User from "../models/userModel.js";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, active } = req.body;
     if (!name || !email || !password) {
       return res.json({
-        message: "Please fill all fields",
+        message: "Please fill out the fields.",
       });
     }
     if (password.length < 8) {
@@ -19,20 +19,20 @@ const register = async (req, res) => {
     if (userExist) {
       return res.json({ message: "Email already exists" });
     }
-    const hashpass = await bcrypt.hash(req.body.password, 10);
-    console.log(hashpass);
+    // const hashpass = await bcrypt.hash(req.body.password, 10);
+    // console.log(hashpass);
 
     const newUser = new User({
       name,
       email,
       password,
       role,
+      active,
     });
     const user = await newUser.save();
-    res.status(200).json({ message: `User Added Successfully` });
+    res.status(200).json({ message: `User added successfully` });
   } catch (error) {
-    // next(error);
-    console.log(error);
+    next(error);
   }
 };
 
@@ -41,7 +41,7 @@ const login = async (req, res, next) => {
     const { email, password } = req.body;
     if (!email || !password) {
       return res.json({
-        message: "Please fill all the fields",
+        message: "Please fill out the fields.",
       });
     }
     const user = await User.findOne({ email });
@@ -50,32 +50,32 @@ const login = async (req, res, next) => {
         message: "User not registered",
       });
     }
-    const isMatchedPassword = await bcrypt.compare(password, user.password);
-    if (!isMatchedPassword) {
-      return res.json({
-        message: "Email and Password is not correct",
-      });
+    // const isMatchedPassword = await bcrypt.compare(password, user.password);
+    if (user.password != password)
+      return res.json({ message: "Email or Password is incorrect" });
+    console.log(user.active);
+    if (user.active == "false") {
+      return res.json({ message: "Your Account has been Deactivated" });
     }
-    console.log(`matched`);
+    //  console.log(`matched`);
 
     const token = jwt.sign({ id: user._id }, "mysupersecret786", {
       expiresIn: "5d",
     });
 
     return res.cookie("token", token, { httpOnly: true }).json({
-      token: `you are logged in`,
+      token: `You are logged in`,
     });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
-const getALLUsers = async (req, res) => {
+const getALLUsers = async (req, res, next) => {
   try {
     const users = await User.find();
     return res.json(users);
   } catch (error) {
-    // next(error);
-    console.log(error);
+    next(error);
   }
 };
 
@@ -90,46 +90,55 @@ const logout = async (req, res) => {
   }
 };
 
-const getUser = async (req, res) => {
+const getUser = async (req, res, next) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.status(404).json({ message: "Not found" });
+  }
   try {
     const user = await User.findById(req.params.id);
     return res.json(user);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
-const updateUser = async (req, res) => {
-  const { name, role, email, password } = req.body;
-  const hashpass = await bcrypt.hash(password, 10);
-  console.log(hashpass);
+const updateUser = async (req, res, next) => {
+  const { name, role, email, password, active } = req.body;
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.status(404).json({ message: "Not found" });
+  }
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, {
-      name,
-      email,
-      password: hashpass,
-      role,
-    });
-    return res.json(updatedUser);
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        name,
+        email,
+        password,
+        role,
+        active,
+      },
+      { new: true }
+    );
+    return res.json({ message: `User has been updated` });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res, next) => {
   // const { _id } = req.params.id;
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    return res.status(404).json({ message: "No user found with this userID" });
+    return res.status(404).json({ message: "Not found" });
   }
 
   try {
     const daletedUser = await User.findByIdAndDelete(req.params.id);
-    console.log(deleteUser);
+    console.log(daletedUser);
     return res.json({ message: `User has been deleted` });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
-const loggedIn = async (req, res) => {
+const loggedIn = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) return res.json(false);
@@ -137,12 +146,16 @@ const loggedIn = async (req, res) => {
     const id = decode.id;
     req.user = await User.findById(id);
 
-    res.send(req.user.role);
+    return res.send(req.user.role);
     // res.send(true);
   } catch (err) {
-    res.json(false);
+    return res.json(false);
   }
 };
+
+// const deactivateUser = async () => {
+//   const { active } = req.body;
+// };
 export {
   register,
   login,
@@ -152,4 +165,5 @@ export {
   updateUser,
   deleteUser,
   loggedIn,
+  // deactivateUser,
 };

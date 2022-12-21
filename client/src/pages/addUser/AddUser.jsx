@@ -34,6 +34,9 @@ const AddUser = () => {
       seterror(false);
     }, 5000);
   }
+  function handleOptionChange() {
+    
+  }
   return (
     <div className={styles.container}>
       <div className={styles.adduser}>
@@ -52,7 +55,12 @@ const AddUser = () => {
             />
           </div>
           <div class="mb-3">
-            <select name="" id="roles" className={styles.select}>
+            <select
+              name=""
+              id="roles"
+              className={styles.select}
+              onChange={handleOptionChange}
+            >
               <option className={styles.select} value="role">
                 Select Role
               </option>

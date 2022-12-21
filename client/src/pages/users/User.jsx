@@ -75,14 +75,12 @@ const User = () => {
     toast(res.data.message);
   };
   useEffect(() => {
-    // handleDelete();
     const userfunc = async () => {
       const res = await axios.get("http://localhost:5000/users");
       setusers(res.data);
     };
-
     userfunc();
-  }, []);
+  }, [user]);
   const AddUser = () => {
     console.log(`user Add`);
   };
