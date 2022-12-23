@@ -1,19 +1,17 @@
 body {
   color: #234567;
 }
-
+/*
 .loginButtonGray {
   margin-top: 20px;
   background-color: #b1dae7;
-  /* background-color: #234567; */
   border: none;
   cursor: pointer;
-  /* color: #b1dae7; */
   color: #234567;
   font-weight: bolder;
   border-radius: 10px;
   padding: 10px 0px;
-}
+} */
 .loginButton {
   margin-top: 20px;
   background-color: #234567;
@@ -26,8 +24,8 @@ body {
   padding: 10px 0px;
 }
 .nazran {
-  color: #234567;
-  letter-spacing: 8px;
-  font-size: larger;
+  color: #fff;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
   font-weight: 900;
 }

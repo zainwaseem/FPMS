@@ -6,9 +6,14 @@ import mongoose from "mongoose";
 const register = async (req, res, next) => {
   try {
     const { name, email, password, role, active } = req.body;
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !role) {
       return res.json({
         message: "Please fill out the fields.",
+      });
+    }
+    if (role == "role") {
+      return res.json({
+        message: "Select a role please.",
       });
     }
     if (password.length < 8) {

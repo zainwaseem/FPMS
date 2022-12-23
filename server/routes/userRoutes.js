@@ -9,7 +9,6 @@ import {
   getUser,
   updateUser,
   deleteUser,
-  // deactivateUser,
 } from "../controllers/userControllers.js";
 
 import { isAuthenticated, isAuthorized } from "../middleware/auth.js";
@@ -20,12 +19,6 @@ router.get("/users", isAuthenticated, isAuthorized("owner"), getALLUsers);
 router.get("/users/:id", isAuthenticated, isAuthorized("owner"), getUser);
 router.put("/users/:id", isAuthenticated, isAuthorized("owner"), updateUser);
 router.delete("/users/:id", isAuthenticated, isAuthorized("owner"), deleteUser);
-// router.delete(
-//   "/deactivate/:id",
-//   isAuthenticated,
-//   isAuthorized("owner"),
-//   deactivateUser
-// );
 router.get("/loggedin", loggedIn);
 router.get("/logout", logout);
 

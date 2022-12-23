@@ -1,10 +1,9 @@
-import React from "react";
-import Model from "../../components/Model";
+import styles from "./Product.module.css";
 
 const Product = () => {
   return (
     <>
-      <Model />
+      <div className={styles.product}>Products</div>
     </>
   );
 };

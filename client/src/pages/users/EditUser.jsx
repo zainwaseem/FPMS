@@ -1,16 +1,32 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import styles from "./AddUser.module.css";
+import styles from "./EditUser.module.css";
+import { useParams } from "react-router-dom";
 
-const AddUser = () => {
+const EditUser = () => {
+  const { id } = useParams();
+
   const [name, setName] = useState();
   const [role, setRole] = useState();
   const [email, setEmail] = useState();
+  const [active, setActive] = useState(true);
   const [password, setPassword] = useState();
+
+  useEffect(() => {
+    const getsingleuser = async () => {
+      const res = await axios.get(`http://localhost:5000/users/${id}`);
+      setName(res.data.name);
+      setRole(res.data.role);
+      setEmail(res.data.email);
+      setPassword(res.data.password);
+    };
+    getsingleuser();
+  }, [id]);
+
   const [error, seterror] = useState();
 
-  const handleOptionChane = async (e) => {
+  const handleOptionChange = async (e) => {
     console.log(e.target.value);
     if (e.target.value === "role") {
       return toast("Please select any role");
@@ -18,18 +34,25 @@ const AddUser = () => {
     await setRole(e.target.value);
     console.log(e.target.value);
   };
-  async function hanldeSubmit(e) {
+  const handleActiveChange = async (e) => {
+    console.log(e.target.value);
+
+    await setActive(e.target.value);
+    console.log(e.target.value);
+  };
+  async function handleUpdateUser(e) {
     e.preventDefault();
     seterror(false);
+    console.log(role, active);
     try {
-      const res = await axios.post("http://localhost:5000/register", {
+      const res = await axios.put(`http://localhost:5000/users/${id}`, {
         name,
-        role,
         email,
         password,
+        role,
+        active,
       });
       if (res.data.message) {
-        seterror(true);
         toast(res.data.message);
         res.data && window.location.replace("/users");
       }
@@ -45,8 +68,8 @@ const AddUser = () => {
   return (
     <div className={styles.container}>
       <div className={styles.adduser}>
-        <form onSubmit={hanldeSubmit}>
-          <div class="mb-3">
+        <form>
+          <div class="mb-2">
             <label for="exampleInputEmail1" class="form-label">
               Name
             </label>
@@ -55,13 +78,12 @@ const AddUser = () => {
               onChange={(e) => setName(e.target.value)}
               type="text"
               class="form-control"
-              required={true}
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
             />
           </div>
 
-          <div class="mb-3">
+          <div class="mb-2">
             <label for="exampleInputEmail1" class="form-label">
               Email
             </label>
@@ -72,30 +94,28 @@ const AddUser = () => {
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              required={true}
             />
           </div>
-          <div class="mb-3">
+          <div class="mb-2">
             <label for="exampleInputPassword1" class="form-label">
               Password
             </label>
             <input
               type="password"
               class="form-control"
-              required={true}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               id="exampleInputPassword1"
             />
           </div>
-          <div class="mb-3">
+          <div class="mb-2">
             <label for="exampleInputEmail1" class="form-label">
               Role
             </label>
             <br />
             <select
               className={styles.SelectOptionStyle}
-              onChange={handleOptionChane}
+              onChange={handleOptionChange}
             >
               <option value="role">Select Role...</option>
               <option value="client">Client</option>
@@ -103,22 +123,29 @@ const AddUser = () => {
               <option value="manager">Manager</option>
               <option value="supervisor">Supervisor</option>
             </select>
-
-            {/* <label for="exampleInputEmail1" class="form-label">
+          </div>
+          <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">
               Role
             </label>
-            <input
-              onChange={(e) => setRole(e.target.value)}
-              value={role}
-              type="text"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            /> */}
+            <br />
+            <select
+              className={styles.SelectOptionStyle}
+              onChange={handleActiveChange}
+            >
+              <option value="true" selected>
+                True
+              </option>
+              <option value="false">False</option>
+            </select>
           </div>
 
-          <button type="submit" class={styles.loginButton}>
-            Add User
+          <button
+            onClick={handleUpdateUser}
+            type="submit"
+            class={styles.loginButton}
+          >
+            Update User
           </button>
         </form>
         {/* <span className="text-danger">{error && message}</span> */}
@@ -127,4 +154,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditUser;

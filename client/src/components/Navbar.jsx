@@ -29,6 +29,7 @@ const Navbar = () => {
           <button
             className="navbar-toggler"
             type="button"
+            data-target="#bs-example-navbar-collapse-1"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
@@ -62,7 +63,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 {isLoggedIn && (
-                  <Link className="nav-link" to="materials">
+                  <Link className="nav-link" to="/materials">
                     Material
                   </Link>
                 )}

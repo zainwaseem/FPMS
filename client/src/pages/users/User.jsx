@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import usr1 from "../../img/1.png";
+import usr1 from "../../img/man.png";
 import { MdDelete } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
-import { BiUser } from "react-icons/bi";
-import "./User.css";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { SiNamecheap } from "react-icons/si";
+// import { BiUser } from "react-icons/bi";
+import { AiFillEdit, AiOutlineMail } from "react-icons/ai";
+import styles from "./User.module.css";
 import { toast } from "react-toastify";
 
 // import usr2 from "../../img/2.png";
@@ -74,6 +77,7 @@ const User = () => {
     const res = await axios.delete(`http://localhost:5000/users/${id}`);
     toast(res.data.message);
   };
+  const handleEdit = async () => {};
   useEffect(() => {
     const userfunc = async () => {
       const res = await axios.get("http://localhost:5000/users");
@@ -81,45 +85,66 @@ const User = () => {
     };
     userfunc();
   }, [user]);
-  const AddUser = () => {
-    console.log(`user Add`);
-  };
+
   return (
     <>
-      {/* Add users */}
-      <Link to="/adduser">
-        <div className="cards-list" onClick={AddUser}>
-          <div className="card 1">
-            <div className="AddButton">
-              <FaUserAlt />
-              {/* <BiUser /> */}
-            </div>
-            <div className="card_title">
-              <span>Add User</span>
+      <div className={styles.userspage}>
+        <Link to="/adduser" className={styles.AddUserLink}>
+          <div className={styles.cardslist}>
+            <div className={styles.card}>
+              <div className={styles.AddButton}>
+                <FaUserAlt />
+              </div>
+              <div className={styles.card_title}>
+                <span>Add User</span>
+              </div>
             </div>
           </div>
+        </Link>
+        {/* Registered users */}
+        <div className={styles.cardslist}>
+          {user
+            ? user.map((u, index) => (
+                <div className={styles.card} key={index}>
+                  <div className={styles.card_image}>
+                    <img src={usr1} alt="" />
+                    <div className={styles.userData}>
+                      <h3>
+                        <SiNamecheap /> &nbsp;
+                        {u.name}
+                      </h3>
+                      <p>
+                        <AiOutlineMail />
+                        &nbsp;
+                        {u.email}
+                      </p>
+                      <p>
+                        &nbsp; &nbsp;
+                        <RiLockPasswordFill />
+                        {u.password}
+                      </p>
+                      {/* <p>{u.password}</p> */}
+                      <div className={styles.icons}>
+                        <MdDelete
+                          size={25}
+                          onClick={() => handleDelete(u._id)}
+                        />
+                        <Link to={`/${u._id}`} className={styles.EditLink}>
+                          <AiFillEdit
+                            size={25}
+                            onClick={() => handleEdit(u._id)}
+                          />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={styles.card_title}>
+                    <p>{u.role}</p>
+                  </div>
+                </div>
+              ))
+            : `No user Found`}
         </div>
-      </Link>
-      {/* Registered users */}
-      <div className="cards-list">
-        {user.map((u, index) => (
-          <div className="card 1" key={index}>
-            <div className="card_image">
-              <img src={usr1} alt="" />
-              {/* <FaUserAlt /> */}
-              {/* <BiUser className="AddButton" /> */}
-
-              <h3>{u.name}</h3>
-              <p>{u.email}</p>
-              <p>{u._id}</p>
-              {/* <p>{u.password}</p> */}
-              <MdDelete size={105} onClick={() => handleDelete(u._id)} />
-            </div>
-            <div className="card_title">
-              <p>{u.role}</p>
-            </div>
-          </div>
-        ))}
       </div>
     </>
   );

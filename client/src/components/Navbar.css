@@ -1,10 +1,20 @@
-.navbar-expand-lg {
+/* .navbar-expand-lg {
   background-color: #b1dae7;
-}
+} */
 .nav-item .nav-link {
   color: #234567 !important;
   font-weight: bold;
 }
+.nav-item .nav-link:hover {
+  color: #1679db !important;
+  transform: scale(0.99);
+}
 .navbar-light .navbar-toggler-icon {
   background-color: white;
+}
+.nav-item {
+  background-color: #fff;
+}
+.nav-item .nav-link {
+  background-color: #fff;
 }

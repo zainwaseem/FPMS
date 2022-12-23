@@ -1,8 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import usr1 from "../../img/1.png";
+import { AiFillEdit } from "react-icons/ai";
+import { FaUserAlt } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import man from "../../img/man.png";
 
-import "./Employee.css";
+import styles from "./Employee.module.css";
 const Employee = () => {
   const [employees, setEmployees] = useState([]);
   useEffect(() => {
@@ -13,18 +18,46 @@ const Employee = () => {
 
     userfunc();
   }, []);
+
+  const handleDelete = async (id) => {
+    const res = await axios.delete(`http://localhost:5000/employees/${id}`);
+    toast(res.data.message);
+  };
+  const handleEdit = async () => {};
   return (
     <>
-      <div class="cards-list">
+      <Link to="/addemployee" className={styles.AddUserLink}>
+        <div className={styles.cardslist}>
+          <div
+            className={styles.card}
+            style={{ width: "200px", height: "200px" }}
+          >
+            <div className={styles.AddButton}>
+              <FaUserAlt />
+            </div>
+            <div className={styles.card_title} style={{ fontSize: "23px" }}>
+              <span>Add Employee</span>
+            </div>
+          </div>
+        </div>
+      </Link>
+      <div class={styles.cardslist}>
         {employees.map((u, index) => (
-          <div class="card 1" key={index}>
-            <div class="card_image">
-              <img src={usr1} alt="" />
+          <div class={styles.card} key={index}>
+            <div class={styles.card_image}>
+              <img src={man} alt="" className="pt-1" />
               <h3>{u.name}</h3>
               <p>{u.email}</p>
+              <p>{u.address}</p>
+              <p>{u.endDate}</p>
+              <p>{u.idCard}</p>
+              <p>{u.workingTimes}</p>
             </div>
-            <div class="card_title">
-              <p>{u.role}</p>
+            <div className={styles.icons}>
+              <MdDelete size={45} onClick={() => handleDelete(u._id)} />
+              <Link to={`/${u._id}`} className={styles.EditLink}>
+                <AiFillEdit size={45} onClick={() => handleEdit(u._id)} />
+              </Link>
             </div>
           </div>
         ))}

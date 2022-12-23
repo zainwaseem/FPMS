@@ -42,15 +42,15 @@ const Login = () => {
           value={email}
           className={styles.loginInput}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your Email..."
+          placeholder="Email"
         />
         <label>Password</label>
         <input
-          type="pasword"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className={styles.loginInput}
-          placeholder="Your password..."
+          placeholder="Password"
         />
         <button className="loginButton" onClick={handleLogin}>
           Login
