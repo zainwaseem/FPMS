@@ -1,0 +1,18 @@
+.Error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  line-height: 50px;
+}
+
+.Error h1 {
+  line-height: 20px;
+  color: red;
+}
+
+.Error button {
+  border: none;
+  
+}

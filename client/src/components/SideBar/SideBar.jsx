@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import "./SideBar.css";
-import {
-  FaTh,
-  FaBars,
-  FaUserAlt,
-  FaRegChartBar,
-  FaCommentAlt,
-  FaShoppingBag,
-  FaThList,
-} from "react-icons/fa";
-import { BsFillPersonFill } from "react-icons/bs";
+import { FaTh, FaBars, FaUserAlt, FaShoppingBag } from "react-icons/fa";
 import { FcManager } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -25,41 +16,6 @@ const SideBar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const { isLoggedIn } = useContext(AuthContext);
-
-  // const menuItem = [
-  //   {
-  //     path: "/",
-  //     name: "Dashboard",
-  //     icon: <FaTh />,
-  //   },
-  //   {
-  //     path: "/login",
-  //     name: "Login",
-  //     icon: <FaUserAlt />,
-  //   },
-  //   {
-  //     path: "/Product",
-  //     name: "Product",
-  //     icon: <FaRegChartBar />,
-  //   },
-  //   {
-  //     path: "/Employee",
-  //     name: "Employee",
-  //     icon: <FaCommentAlt />,
-  //   },
-  //   {
-  //     path: "/Material",
-  //     name: "Material",
-  //     icon: <FaShoppingBag />,
-  //   },
-  //   {
-  //     path: "/productList",
-  //     name: "Product List",
-  //     icon: <FaThList />,
-  //   },
-  // ];
-
-  //logging you out
   const handleLogout = async (e) => {
     e.preventDefault();
 
@@ -110,31 +66,32 @@ const SideBar = ({ children }) => {
               </div>
             </Link>
           )}
-          {isLoggedIn === "supervisor" ||
-            (isLoggedIn === "owner" && (
-              <Link to="/employees" className="link" activeclassName="active">
-                <div className="icon">
-                  <MdSupervisorAccount />
-                </div>
-                <div
-                  style={{ display: isOpen ? "block" : "none" }}
-                  className="link_text"
-                >
-                  Emloyees
-                </div>
-              </Link>
-            ))}
-          <Link to="/material" className="link" activeclassName="active">
-            <div className="icon">
-              <FaShoppingBag />
-            </div>
-            <div
-              style={{ display: isOpen ? "block" : "none" }}
-              className="link_text"
-            >
-              Material
-            </div>
-          </Link>
+          {isLoggedIn === "supervisor" && (
+            <Link to="/employees" className="link" activeclassName="active">
+              <div className="icon">
+                <MdSupervisorAccount />
+              </div>
+              <div
+                style={{ display: isOpen ? "block" : "none" }}
+                className="link_text"
+              >
+                Emloyees
+              </div>
+            </Link>
+          )}
+          {isLoggedIn === "manager" && (
+            <Link to="/material" className="link" activeclassName="active">
+              <div className="icon">
+                <FaShoppingBag />
+              </div>
+              <div
+                style={{ display: isOpen ? "block" : "none" }}
+                className="link_text"
+              >
+                Material
+              </div>
+            </Link>
+          )}
           <Link to="/products" className="link" activeclassName="active">
             <div className="icon">
               <MdOutlineProductionQuantityLimits />
@@ -179,7 +136,9 @@ const SideBar = ({ children }) => {
           )}
           {/* // ))} */}
         </div>
-        <main>{children}</main>
+        <main style={{ marginLeft: isOpen ? "200px" : "50px" }}>
+          {children}
+        </main>
       </div>
     </>
   );

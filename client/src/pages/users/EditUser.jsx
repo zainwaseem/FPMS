@@ -143,7 +143,7 @@ const EditUser = () => {
           <button
             onClick={handleUpdateUser}
             type="submit"
-            class={styles.loginButton}
+            className={styles.loginButton}
           >
             Update User
           </button>

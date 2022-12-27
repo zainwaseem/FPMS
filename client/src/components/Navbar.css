@@ -18,3 +18,22 @@
 .nav-item .nav-link {
   background-color: #fff;
 }
+.prouctCart {
+  position: relative;
+}
+.bag-quantity span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 22px;
+  width: 20px;
+  background-color: yellow;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  color: black;
+
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}

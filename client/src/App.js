@@ -12,38 +12,45 @@ import AuthContext from "./context/Authcontext";
 import AddUser from "./pages/addUser/AddUser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SideBar from "./components/SideBar/SideBar.jsx";
+// import SideBar from "./components/SideBar/SideBar.jsx";
 import Material from "./pages/Material/Material";
+import AddEmp from "./pages/employees/AddEmp";
+import Error from "./components/Error/Error";
+import Cart from "./pages/product/Cart";
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
   if (isLoggedIn) {
     toast(`loggin you in as a ` + isLoggedIn);
+    console.log(isLoggedIn);
   }
   return (
     <>
       <BrowserRouter>
         <Navbar />
-        <SideBar>
+        {/* <SideBar> */}
           <Routes>
-            <Route path="/" element={<Banner />} />
             {!isLoggedIn && <Route path="/login" element={<Login />} />}
-            <Route path="/product" element={<Product />} />
-            <Route path="/orders" element={<Product />} />
-            <Route path="/users" element={<User />} />
-            <Route path="/:id" element={<EditUser />} />
-            <Route path="/employees" element={<Employee />} />
-            <Route path="/inventory" element={<Product />} />
-            <Route path="/adduser" element={<AddUser />} />
-            <Route path="/material" element={<Material />} />
-            <Route
-              path="*"
-              element={
-                <h1>You are trying to access a route that is not exist</h1>
-              }
-            />
+
+            <Route path="/" element={<Banner />} /> 
+            {isLoggedIn && (
+              <>
+                <Route path="/products" element={<Product />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/orders" element={<Product />} />
+                <Route path="/users" element={<User />} />
+                <Route path="/:id" element={<EditUser />} />
+                <Route path="/employees" element={<Employee />} />
+                <Route path="/inventory" element={<Product />} />
+                <Route path="/adduser" element={<AddUser />} />
+                <Route path="/addemployee" element={<AddEmp />} />
+                <Route path="/material" element={<Material />} />
+              </>
+            )}
+            <Route path="*" element={<Error />} />
           </Routes>
           <ToastContainer />
-        </SideBar>
+        {/* </SideBar> */}
+        {/* <Banner /> */}
       </BrowserRouter>
     </>
   );

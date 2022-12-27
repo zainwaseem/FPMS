@@ -10,22 +10,28 @@
   overflow-y: scroll;
   /* justify-content: flex-start; */
   /* align-items: flex-start; */
+  position: relative;
 }
 main {
   width: 100%;
-  /* padding: 20px; */
+  /* padding-left: 25px; */
+  /* margin-left: 25px; */
   height: 100vh;
 }
 .sidebar {
   background: rgb(76, 114, 240);
   /* background: rgb(76, 114, ; */
   color: #fff;
+  z-index: 999;
+  /* position: fixed; */
+  /* top: 0; */
+  /* left: 0; */
+
   height: 100vh;
   width: 200px;
   transition: all 0.5s;
-
 }
-.link{
+.link {
   border-bottom: 1px solid #b1dae718;
   text-decoration: none;
 }

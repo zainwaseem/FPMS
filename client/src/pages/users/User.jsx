@@ -90,7 +90,7 @@ const User = () => {
     <>
       <div className={styles.userspage}>
         <Link to="/adduser" className={styles.AddUserLink}>
-          <div className={styles.cardslist}>
+          <div className={styles.cardslist} class="rotate-vert-center">
             <div className={styles.card}>
               <div className={styles.AddButton}>
                 <FaUserAlt />
@@ -102,7 +102,7 @@ const User = () => {
           </div>
         </Link>
         {/* Registered users */}
-        <div className={styles.cardslist}>
+        <div className={styles.cardslist} >
           {user
             ? user.map((u, index) => (
                 <div className={styles.card} key={index}>

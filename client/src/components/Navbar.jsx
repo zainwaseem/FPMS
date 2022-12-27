@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/Authcontext";
 import logo from "../img/logo.png";
@@ -49,7 +50,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 {isLoggedIn && (
-                  <Link className="nav-link" to="product">
+                  <Link className="nav-link" to="products">
                     Product
                   </Link>
                 )}
@@ -82,6 +83,14 @@ const Navbar = () => {
             {!isLoggedIn && (
               <Link className="cta  loginButton mt-0 ps-4 pe-4 " to="/login">
                 <span>Login</span>
+              </Link>
+            )}
+            {isLoggedIn && (
+              <Link className="pe-3 prouctCart" to="/cart">
+                <AiOutlineShoppingCart size={40} />
+                <span className="bag-quantity">
+                  <span>5</span>
+                </span>
               </Link>
             )}{" "}
             {isLoggedIn && (

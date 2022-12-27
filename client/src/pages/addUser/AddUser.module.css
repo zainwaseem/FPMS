@@ -1,5 +1,6 @@
 .container {
   height: 89.5vh;
+  height: 100vh;
   background-image: linear-gradient(
       #408bd652,
       #b1dae78a,
@@ -9,19 +10,14 @@
 
   background-position: center center;
   background-size: cover;
-
   background-repeat: no-repeat;
-  padding-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-/* .roles {
-  outline: none;
-  border: none;
-  border-radius: 0;
-} */
 
 .container .adduser {
   padding: 10px 0px;
-
   width: 18rem;
   background-color: rgb(195, 221, 211);
   border-radius: 10px;
@@ -35,8 +31,6 @@
 .loginButton {
   background-color: #234567;
   border: none;
-  /* width: 6rem; */
-
   cursor: pointer;
   color: #b1dae7;
   font-weight: bolder;
@@ -52,35 +46,3 @@
   border-radius: 10px;
   padding-right: 90px;
 }
-
-/* .login {
-  font-family: Times, serif;
-  height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-size: cover;
-  background-position: center;
-  background-image: linear-gradient(#408bd67b, #b1dae76d),
-    url("../../img/adduser.jpg");
-}
-
-.loginTitle {
-  font-size: 50px;
-  color: #b1dae7;
-}
-.loginForm > label {
-  margin: 10px 0;
-  color: #234567;
-}
-.loginForm > input {
-  border-radius: 10px;
-  margin: 5px;
-  outline: none;
-}
-.loginInput {
-  padding: 10px;
-  background-color: white;
-  border: none;
-} */
