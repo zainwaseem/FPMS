@@ -1,20 +1,21 @@
 import styles from "./Banner.module.css";
-// import logo from "../img/logo.png";
 
 const Banner = () => {
   return (
     <>
       <div className={styles.banner}>
-        {/* <img src={logo} alt="" /> */}
         <div className={styles.contain}>
           <div className={styles.box} style={{ background: "#E31C24" }}>
-            1
+            <h3>Orders</h3>
+            <span>4</span>
           </div>
           <div className={styles.box} style={{ background: "#026EB5" }}>
-            2
+            <h3>Employees</h3>
+            <span>44</span>
           </div>
           <div className={styles.box} style={{ background: "#38AE48" }}>
-            3
+            <h3>Users</h3>
+            <span>22</span>
           </div>
         </div>
       </div>

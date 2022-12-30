@@ -14,7 +14,7 @@ const employeesSchema = new mongoose.Schema(
       message: (props) => `${props.value} is not valid email`,
     },
     idCard: { type: Number, required: true },
-    workingTimes: { type: String },
+    phone: { type: Number },
     endDate: { type: String },
     address: { type: String, required: true },
     experience: { type: String, required: true },

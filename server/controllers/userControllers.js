@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 const register = async (req, res, next) => {
   try {
     const { name, email, password, role, active } = req.body;
-    if (!name || !email || !password || !role) {
+    if (!name || !email || !password) {
       return res.json({
         message: "Please fill out the fields.",
       });

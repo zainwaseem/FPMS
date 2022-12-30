@@ -17,38 +17,78 @@ import Material from "./pages/Material/Material";
 import AddEmp from "./pages/employees/AddEmp";
 import Error from "./components/Error/Error";
 import Cart from "./pages/product/Cart";
+import Register from "./pages/register/Register";
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
+  console.log(isLoggedIn);
+  // const [role, setRole] = useState();
   if (isLoggedIn) {
-    toast(`loggin you in as a ` + isLoggedIn);
-    console.log(isLoggedIn);
+    toast.success(`logging you in as a ` + isLoggedIn, {
+      autoClose: 1000,
+      position: `bottom-left`,
+    });
   }
   return (
     <>
       <BrowserRouter>
         <Navbar />
         {/* <SideBar> */}
-          <Routes>
-            {!isLoggedIn && <Route path="/login" element={<Login />} />}
+        <Routes>
+          {!isLoggedIn && (
+            <>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </>
+          )}
+          <Route path="/" element={<Banner />} />
+          {isLoggedIn === "owner" ? (
+            <>
+              <Route path="/products" element={<Product />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/orders" element={<Product />} />
+              <Route path="/users" element={<User />} />
+              <Route path="/:id" element={<EditUser />} />
+              <Route path="/employees" element={<Employee />} />
+              <Route path="/adduser" element={<AddUser />} />
+              {/* <Route path="/addemployee" element={<AddEmp />} /> */}
+            </>
+          ) : null}
+          {isLoggedIn === "manager" ? (
+            <>
+              <Route path="/orders" element={<Product />} />
+              <Route path="/materials" element={<Material />} />
+            </>
+          ) : null}
+          {isLoggedIn === "supervisor" ? (
+            <>
+              <Route path="/orders" element={<Product />} />
+              <Route path="/employees" element={<Employee />} />
+              <Route path="/addemployee" element={<AddEmp />} />
+            </>
+          ) : null}
+          {isLoggedIn === "user" ? (
+            <>
+              <Route path="/products" element={<Product />} />
+              <Route path="/cart" element={<Cart />} />
+            </>
+          ) : null}
+          {/* <Route path="/home" element={<h1>Home</h1>} /> */}
+          {/* <Route path="/about" element={<h1>about</h1>} /> */}
+          {/* <Route path="/contact" element={<h1>Contact Us</h1>} /> */}
+          {/* <Route path="/products" element={<Product />} /> */}
+          <Route path="*" element={<Error />} />
+        </Routes>
 
-            <Route path="/" element={<Banner />} /> 
-            {isLoggedIn && (
-              <>
-                <Route path="/products" element={<Product />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/orders" element={<Product />} />
-                <Route path="/users" element={<User />} />
-                <Route path="/:id" element={<EditUser />} />
-                <Route path="/employees" element={<Employee />} />
-                <Route path="/inventory" element={<Product />} />
-                <Route path="/adduser" element={<AddUser />} />
-                <Route path="/addemployee" element={<AddEmp />} />
-                <Route path="/material" element={<Material />} />
-              </>
-            )}
-            <Route path="*" element={<Error />} />
-          </Routes>
-          <ToastContainer />
+        <ToastContainer
+          position="bottom-left"
+          autoClose={2000}
+          hideProgressBar={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          theme="dark"
+        />
         {/* </SideBar> */}
         {/* <Banner /> */}
       </BrowserRouter>

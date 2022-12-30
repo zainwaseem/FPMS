@@ -1,11 +1,9 @@
 .banner {
-  background-image: linear-gradient(#b1dae764, #234567b7),
+  background-image: linear-gradient(#34393aeb, rgba(128, 128, 128, 0.527)),
     url("../img/Banner1.jpg");
-  /* height: calc(100vh - 60px); */
   height: 100vh;
   background-size: cover;
   background-position: center;
-  color: black;
 }
 
 .contain {
@@ -16,21 +14,26 @@
 .box {
   margin-top: 40px;
   background-color: #eff0f1b7;
+  color: white;
   width: 320px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
   height: 170px;
 }
-.banner img {
-  height: 15rem;
-  width: 30rem;
+
+.box > h3 {
+  padding: 1rem;
+}
+.box > span {
+  font-size: 4rem;
+  text-align: center;
 }
 @media all and (max-width: 500px) {
-  .banner img {
-    /* On small screens, we are no longer using row direction but column */
-    /* flex-direction: column; */
-    height: 8rem;
-    width: 18rem;
+  .banner {
+    height: auto;
   }
+
   .contain {
     flex-direction: column;
     justify-content: center;

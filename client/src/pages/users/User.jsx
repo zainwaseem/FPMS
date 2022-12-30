@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import usr1 from "../../img/man.png";
 import { MdDelete } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { SiNamecheap } from "react-icons/si";
+// import { RiLockPasswordFill } from "react-icons/ri";
+// import { SiNamecheap } from "react-icons/si";
 // import { BiUser } from "react-icons/bi";
-import { AiFillEdit, AiOutlineMail } from "react-icons/ai";
+import { AiFillEdit } from "react-icons/ai";
 import styles from "./User.module.css";
 import { toast } from "react-toastify";
 
@@ -102,7 +102,7 @@ const User = () => {
           </div>
         </Link>
         {/* Registered users */}
-        <div className={styles.cardslist} >
+        <div className={styles.cardslist}>
           {user
             ? user.map((u, index) => (
                 <div className={styles.card} key={index}>
@@ -110,17 +110,17 @@ const User = () => {
                     <img src={usr1} alt="" />
                     <div className={styles.userData}>
                       <h3>
-                        <SiNamecheap /> &nbsp;
+                        {/* <SiNamecheap /> &nbsp; */}
                         {u.name}
                       </h3>
                       <p>
-                        <AiOutlineMail />
-                        &nbsp;
+                        {/* <AiOutlineMail /> */}
+                        {/* &nbsp; */}
                         {u.email}
                       </p>
                       <p>
-                        &nbsp; &nbsp;
-                        <RiLockPasswordFill />
+                        {/* &nbsp; &nbsp; */}
+                        {/* <RiLockPasswordFill /> */}
                         {u.password}
                       </p>
                       {/* <p>{u.password}</p> */}

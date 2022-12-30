@@ -1,43 +1,47 @@
 import Employee from "../models/EmployeeModel.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
-const AddEmployee = async (req, res) => {
+const AddEmployee = async (req, res, next) => {
   try {
-    const { name, address, experience, workingTimes, email, endDate, idCard } =
+    const { name, address, experience, phone, email, endDate, idCard } =
       req.body;
-    if (
-      !name ||
-      !address ||
-      !experience ||
-      !workingTimes ||
-      !email ||
-      !endDate ||
-      !idCard
-    ) {
+    if (!name || !address || !experience || !phone || !email || !idCard) {
       return res.json({
         message: "Please fill all fields",
       });
     }
-
-    const EmployeeExist = await Employee.findOne({ email });
-    if (EmployeeExist) {
-      return res.json({ message: "Email already exists" });
+    if (phone.length < 11) {
+      return res.json({
+        message: "Phone Number contains 11 digits",
+      });
     }
+    if (idCard.length < 13) {
+      return res.json({
+        message: "NIC contains 13 digits",
+      });
+    }
+    const exist = await Employee.findOne({ email });
+    if (exist) {
+      return res.json({ message: "Employee already exists" });
+    }
+    const NICexist = await Employee.findOne({ idCard });
+    if (NICexist) {
+      return res.json({ message: "Employee already exists" });
+    }
+
     const newEmployee = new Employee({
       name,
       address,
       experience,
-      workingTimes,
+      phone,
       email,
       endDate,
       idCard,
     });
-    const savedEmployee = await newEmployee.save();
-    res.status(200).json(savedEmployee);
+    await newEmployee.save();
+    res.status(200).json(`Employee added successfully`);
   } catch (error) {
     // next(error);
-    console.log(error);
+    next(error);
   }
 };
 
@@ -60,15 +64,14 @@ const getEmployee = async (req, res) => {
 };
 
 const updateEmployee = async (req, res) => {
-  const { name, address, experience, workingTimes, email, endDate, idCard } =
-    req.body;
+  const { name, address, experience, phone, email, endDate, idCard } = req.body;
 
   try {
     const updatedEmployee = await Employee.findByIdAndUpdate(req.params.id, {
       name,
       address,
       experience,
-      workingTimes,
+      phone,
       email,
       endDate,
       idCard,

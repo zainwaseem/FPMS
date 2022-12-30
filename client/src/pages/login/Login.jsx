@@ -7,18 +7,18 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, seterror] = useState(false);
-  const [message, setMessage] = useState(``);
+  // const [error, seterror] = useState(false);
+  // const [message, setMessage] = useState(``);
   const handleLogin = async (e) => {
     e.preventDefault();
-    seterror(false);
+    // seterror(false);
     try {
       const res = await axios.post("http://localhost:5000/login", {
         email,
         password,
       });
       if (res.data.message) {
-        seterror(true);
+        // seterror(true);
         toast(res.data.message);
       }
       if (res.data.token) {
@@ -26,10 +26,11 @@ const Login = () => {
         res.data && window.location.replace("/");
       }
     } catch (error) {
-      seterror(true);
+      toast.error(`Something Went Wrong` + error.message);
+      // seterror(true);
     }
     setInterval(() => {
-      seterror(false);
+      // seterror(false);
     }, 5000);
   };
   return (
@@ -42,7 +43,7 @@ const Login = () => {
           value={email}
           className={styles.loginInput}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
+          placeholder="email@nazran.com"
         />
         <label>Password</label>
         <input
@@ -50,12 +51,12 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className={styles.loginInput}
-          placeholder="Password"
+          placeholder=""
         />
-        <button className="loginButton" onClick={handleLogin}>
+        <button className="loginButton cta" onClick={handleLogin}>
           Login
         </button>
-        <p style={{ color: "red" }}>{error && message}</p>
+        {/* <p style={{ color: "red" }}>{error && message}</p> */}
       </form>
     </div>
   );

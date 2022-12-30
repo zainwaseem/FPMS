@@ -1,0 +1,39 @@
+.container {
+  height: 89.5vh;
+  height: 100vh;
+  background-image: linear-gradient(
+      #408bd652,
+      #b1dae78a,
+      rgba(136, 221, 187, 0.555)
+    ),
+    url("../../img/Banner1.jpg");
+
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .adduser {
+  padding: 10px 0px;
+  width: 18rem;
+  background-color: rgb(195, 221, 211);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.loginButton {
+  background-color: #234567;
+  border: none;
+  cursor: pointer;
+  color: #b1dae7;
+  font-weight: bolder;
+  border-radius: 10px;
+  padding: 10px;
+}

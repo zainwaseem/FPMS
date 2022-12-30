@@ -3,16 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../features/products/productSlice";
 import { useEffect } from "react";
 import { useGetAllProductsQuery } from "../../features/products/productsApi";
+import { addToCart } from "../../features/products/cartSlice";
 
 const Product = () => {
   const dispatch = useDispatch();
   const dataRT = useSelector((state) => state);
-  console.log(dataRT);
+  // console.log(dataRT);
   const { data, error, isLoading } = useGetAllProductsQuery();
-  console.log(data);
+  // console.log(data);
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
 
   return (
     <>
@@ -33,7 +37,9 @@ const Product = () => {
                     <span>{product.desc}</span>
                     <span className={styles.price}>{product.price}</span>
                   </div>
-                  <button>Add to cart</button>
+                  <button onClick={() => handleAddToCart(product)}>
+                    Add to cart
+                  </button>
                 </div>
               ))}
             </div>

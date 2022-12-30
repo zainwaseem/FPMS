@@ -1,13 +1,22 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/Authcontext";
 import logo from "../img/logo.png";
+import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css";
+import { getTotals } from "../features/products/cartSlice";
 
 const Navbar = () => {
   const { isLoggedIn } = useContext(AuthContext);
+  const cart = useSelector((state) => state.cart);
+  const { cartTotalQuantity } = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [dispatch, cart]);
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -63,11 +72,11 @@ const Navbar = () => {
                 )}
               </li>
               <li className="nav-item">
-                {isLoggedIn && (
+                {isLoggedIn === "manager" ? (
                   <Link className="nav-link" to="/materials">
                     Material
                   </Link>
-                )}
+                ) : null}
               </li>{" "}
               <li className="nav-item">
                 {isLoggedIn === "owner" && (
@@ -77,25 +86,28 @@ const Navbar = () => {
                 )}
               </li>
             </ul>
-            {/* <button className="btn btn-outline-success" type="submit">
-              Log In
-            </button> */}
+
             {!isLoggedIn && (
-              <Link className="cta  loginButton mt-0 ps-4 pe-4 " to="/login">
-                <span>Login</span>
-              </Link>
+              <>
+                <Link className=" btn btn-primary" to="/login">
+                  <span>Login</span>
+                </Link>
+                <Link className="ms-2 btn btn-primary" to="/register">
+                  <span>Register</span>
+                </Link>
+              </>
             )}
             {isLoggedIn && (
               <Link className="pe-3 prouctCart" to="/cart">
                 <AiOutlineShoppingCart size={40} />
                 <span className="bag-quantity">
-                  <span>5</span>
+                  <span>{cartTotalQuantity}</span>
                 </span>
               </Link>
-            )}{" "}
+            )}
             {isLoggedIn && (
               <Link
-                className="cta btn loginButton mt-0 ps-4 pe-4"
+                className="btn btn-primary"
                 onClick={handleLogout}
                 to="/login"
               >
