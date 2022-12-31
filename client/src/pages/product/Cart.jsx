@@ -13,7 +13,7 @@ import "./Cart.css";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
+  console.log(cart.cartItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -56,11 +56,11 @@ const Cart = () => {
           <div className="cart-items">
             {cart.cartItems &&
               cart.cartItems?.map((cartItem) => (
-                <div className="cart-item" key={cartItem.id}>
+                <div className="cart-item" key={cartItem._id}>
                   <div className="cart-product">
-                    <img src={cartItem.image} alt={cartItem.name} />
+                    <img src={cartItem.img} alt={cartItem.title} />
                     <div>
-                      <h3>{cartItem.name}</h3>
+                      <h3>{cartItem.title}</h3>
                       <p>{cartItem.desc}</p>
                       <button onClick={() => handleRemoveFromCart(cartItem)}>
                         Remove

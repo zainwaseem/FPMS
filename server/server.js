@@ -1,12 +1,21 @@
 import express from "express";
-
 import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
 import employeeRoutes from "./routes/EmployeeRoutes.js";
+import productRoutes from "./routes/ProductRoutes.js";
 import cors from "cors";
-import products from "./products.js";
 const app = express();
+app.use(express.json({ limit: "50mb" }));
+// app.use(express.urlencoded({ limit: "50mb" }));
+
+import { v2 as cloudinary } from "cloudinary";
+cloudinary.config({
+  cloud_name: "dlf1jfgzk",
+  api_key: "137343997832747",
+  api_secret: "f4C1Mhxz1n7ItBmGvPjTF9oXz6M",
+});
+
 const corsOptions = {
   origin: "http://localhost:3000",
   // origin: "*",
@@ -24,7 +33,7 @@ connectDB();
 // Error Handling
 app.use((err, req, res, next) => {
   const status = err.status || 500;
-  const message = err.status || "something went wrong!";
+  const message = err.message || "something went wrong!";
 
   return res.status(status).json({
     success: false,
@@ -36,9 +45,7 @@ app.use((err, req, res, next) => {
 //Routes
 app.use("/", userRoutes);
 app.use("/", employeeRoutes);
-app.get("/products", (req, res) => {
-  res.send(products);
-});
+app.use("/", productRoutes);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));

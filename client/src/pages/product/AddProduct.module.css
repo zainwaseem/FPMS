@@ -1,0 +1,24 @@
+.EmployeeForm {
+  margin: auto;
+  padding: 50px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.EmployeeForm input {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  outline: none;
+}
+.SelectOptionStyle {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  padding: 8px;
+  outline: none;
+  color: #234567;
+  border-radius: 10px;
+  padding-right: 90px;
+}

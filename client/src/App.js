@@ -18,6 +18,8 @@ import AddEmp from "./pages/employees/AddEmp";
 import Error from "./components/Error/Error";
 import Cart from "./pages/product/Cart";
 import Register from "./pages/register/Register";
+import AddProduct from "./pages/product/AddProduct";
+
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
   console.log(isLoggedIn);
@@ -44,8 +46,9 @@ function App() {
           {isLoggedIn === "owner" ? (
             <>
               <Route path="/products" element={<Product />} />
+              <Route path="/newproduct" element={<AddProduct />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/orders" element={<Product />} />
+              <Route path="/orders" element={<h1>orders</h1>} />
               <Route path="/users" element={<User />} />
               <Route path="/:id" element={<EditUser />} />
               <Route path="/employees" element={<Employee />} />

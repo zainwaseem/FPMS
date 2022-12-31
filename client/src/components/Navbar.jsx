@@ -77,7 +77,7 @@ const Navbar = () => {
                     Material
                   </Link>
                 ) : null}
-              </li>{" "}
+              </li>
               <li className="nav-item">
                 {isLoggedIn === "owner" && (
                   <Link className="nav-link" to="/users">
@@ -97,7 +97,7 @@ const Navbar = () => {
                 </Link>
               </>
             )}
-            {isLoggedIn && (
+            {isLoggedIn === "user" && (
               <Link className="pe-3 prouctCart" to="/cart">
                 <AiOutlineShoppingCart size={40} />
                 <span className="bag-quantity">

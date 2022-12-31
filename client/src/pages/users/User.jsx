@@ -77,6 +77,9 @@ const User = () => {
     const res = await axios.delete(`http://localhost:5000/users/${id}`);
     toast(res.data.message);
   };
+  useEffect(() => {
+    handleDelete();
+  }, []);
   const handleEdit = async () => {};
   useEffect(() => {
     const userfunc = async () => {
