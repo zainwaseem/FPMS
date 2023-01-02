@@ -4,15 +4,12 @@
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  line-height: 50px;
+  font-size: 5rem;
 }
-
 .Error h1 {
-  line-height: 20px;
+  font-size: 4rem;
   color: red;
 }
-
 .Error button {
   border: none;
-  
 }

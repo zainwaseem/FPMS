@@ -5,11 +5,10 @@ import axios from "axios";
 const AuthContext = createContext();
 
 const AuthcontextProvider = (props) => {
-  const [isLoggedIn, setisLoggedIn] = useState(undefined);
+  const [isLoggedIn, setisLoggedIn] = useState(``);
 
   async function getLoggedIn() {
     const loggedInRes = await axios.get("http://localhost:5000/loggedin");
-    console.log(loggedInRes.data);
     setisLoggedIn(loggedInRes.data);
   }
   useEffect(() => {

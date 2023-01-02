@@ -10,7 +10,6 @@ import {
 
 import { isAuthenticated, isAuthorized } from "../middleware/auth.js";
 
-router.post("/products", isAuthenticated, isAuthorized("owner"), AddProduct);
 router.get(
   "/products",
   isAuthenticated,
@@ -23,6 +22,7 @@ router.get(
   isAuthorized("owner", "user"),
   getProduct
 );
+router.post("/products", isAuthenticated, isAuthorized("owner"), AddProduct);
 router.put(
   "/products/:id",
   isAuthenticated,

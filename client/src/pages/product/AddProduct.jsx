@@ -15,14 +15,7 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const zain = {
-      title,
-      desc,
-      img,
-      price,
-      size,
-    };
-    console.log(zain);
+
     try {
       const res = await axios.post("http://localhost:5000/products", {
         title,
@@ -46,22 +39,22 @@ const AddProduct = () => {
         <form onSubmit={handleSubmit}>
           <h5>Product Details</h5>
           <br />
-          <div class="mb-3" style={{ display: "flex" }}>
+          <div className="mb-3" style={{ display: "flex" }}>
             <input
               type="text"
               placeholder="Product title"
-              class="form-control"
+              className="form-control"
               onChange={(e) => setTitle(e.target.value)}
             />
 
             <input
               type="text"
               placeholder="Product description"
-              class="mx-2 form-control"
+              className="mx-2 form-control"
               onChange={(e) => setDesc(e.target.value)}
             />
           </div>{" "}
-          <div class="mb-3" style={{ display: "flex" }}>
+          <div className="mb-3" style={{ display: "flex" }}>
             <select
               className={styles.SelectOptionStyle}
               onChange={(e) => setSize(e.target.value)}
@@ -77,10 +70,10 @@ const AddProduct = () => {
               placeholder="Product Price"
               onChange={(e) => setPrice(e.target.value)}
               type="number"
-              class="form-control mx-2"
+              className="form-control mx-2"
             />
           </div>
-          <div class="mb-3" style={{ display: "flex" }}>
+          <div className="mb-3" style={{ display: "flex" }}>
             <input
               type="file"
               accept="image/*"
@@ -94,12 +87,12 @@ const AddProduct = () => {
                 };
                 reader.readAsDataURL(e.target.files[0]);
               }}
-              class="form-control mx-2"
+              className="form-control mx-2"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
             />
           </div>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             Add Product
           </button>
         </form>

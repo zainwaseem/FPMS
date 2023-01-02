@@ -16,25 +16,28 @@ const Product = () => {
 
   const { products } = useSelector((state) => state);
   console.log(products.items);
-  const { data, error, isLoading } = useGetAllProductsQuery();
-  console.log(data);
+  const { error, isLoading } = useGetAllProductsQuery();
+  // const { data, error, isLoading } = useGetAllProductsQuery();
+  // console.log(data);
   const handleDelete = async (id) => {
     const res = await axios.delete(`http://localhost:5000/products/${id}`);
     toast(res.data.message);
+    res.data && window.location.replace("/products");
   };
   useEffect(() => {
-    handleDelete();
     dispatch(fetchProducts());
-  }, [dispatch, handleDelete]);
+  }, [dispatch]);
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
 
   return (
     <>
-      <Link className="m-3 btn btn-primary" to="/newproduct">
-        Add New Product
-      </Link>
+      {isLoggedIn === "owner" && (
+        <Link className="m-3 btn btn-primary" to="/newproduct">
+          Add New Product
+        </Link>
+      )}
       <div className={styles.homeContainer}>
         {isLoading ? (
           <p>Loading...</p>
@@ -42,7 +45,7 @@ const Product = () => {
           <p>Error Occured in Fetching{error.data}:</p>
         ) : (
           <>
-            <h2>New Arrivals</h2>
+            <h2>Products</h2>
             <div className={styles.products}>
               {/* {data?.map((product) => ( */}
               {products.items?.map((product) => (
@@ -60,8 +63,11 @@ const Product = () => {
                     </button>
                   )}{" "}
                   {isLoggedIn === "owner" && (
-                    <span onClick={() => handleDelete(product._id)}>
-                      <MdDelete style={{ cursor: "pointer" }} />
+                    <span
+                      className="btn btn-danger"
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      <MdDelete size={25} style={{ cursor: "pointer" }} />
                     </span>
                   )}
                 </div>

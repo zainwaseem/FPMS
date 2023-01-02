@@ -7,25 +7,25 @@ const AddProduct = async (req, res, next) => {
     let { title, desc, img, price, size } = req.body;
 
     if (!title || !desc || !img || !price || !size) {
-      return res.json({
+      return res.status(401).json({
         message: "Please provide all details of the product",
       });
     }
 
     const existProduct = await Product.findOne({ title });
-    // if (existProduct) {
-    //   return res.json({ message: "Product already exists" });
-    // }
+    if (existProduct) {
+      return res.json({ message: "Product already exists" });
+    }
     // cloudinary
-    let result = await cloudinary.uploader.upload(img, {
+    const result = await cloudinary.uploader.upload(img, {
       folder: "products",
     });
+    // console.log(result);
     img = {
       public_id: result.public_id,
-      // img = result.secure_url;
       secure_url: result.secure_url,
     };
-
+    console.log(img);
     const newProduct = new Product({
       title,
       desc,
@@ -81,10 +81,8 @@ const deleteProduct = async (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(404).json({ message: "Not found" });
   }
-
   try {
     const daletedProduct = await Product.findByIdAndDelete(req.params.id);
-    console.log(daletedProduct);
     return res.json({ message: `Product has been deleted` });
   } catch (error) {
     next(error);

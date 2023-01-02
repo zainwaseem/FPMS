@@ -5,7 +5,7 @@ const isAuthenticated = async (req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
     return res.json({
-      message: `you need to login to access this route`,
+      message: `You need to login to access this route`,
     });
   }
   var decoded = jwt.verify(token, "mysupersecret786");
@@ -14,7 +14,7 @@ const isAuthenticated = async (req, res, next) => {
   next();
 };
 const isAuthorized = (...roles) => {
-  console.log(roles);
+  
   return (req, res, next) => {
     // role !== req.user.role
     if (!roles.includes(req.user.role)) {
