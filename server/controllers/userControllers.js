@@ -7,22 +7,24 @@ const register = async (req, res, next) => {
   try {
     const { name, email, password, role, active } = req.body;
     if (!name || !email || !password) {
-      return res.json({
+      return res.status(400).json({
         message: "Please fill out the fields.",
       });
     }
     if (role == "role") {
-      return res.json({
+      return res.status(401).json({
         message: "Select a role please.",
       });
     }
     if (password.length < 8) {
-      return res.json({ message: "Password must be at least 8 characters" });
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 8 characters" });
     }
 
     const userExist = await User.findOne({ email });
     if (userExist) {
-      return res.json({ message: "Email already exists" });
+      return res.status(403).json({ message: "Email already exists" });
     }
     // const hashpass = await bcrypt.hash(req.body.password, 10);
     // console.log(hashpass);
@@ -45,26 +47,30 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.json({
+      return res.status(400).json({
         message: "Please fill out the fields.",
       });
     }
     const user = await User.findOne({ email });
     if (!user) {
-      return res.json({
+      return res.status(404).json({
         message: "User not registered",
       });
     }
     // const isMatchedPassword = await bcrypt.compare(password, user.password);
     if (user.password != password)
-      return res.json({ message: "Email or Password is incorrect" });
+      return res
+        .status(404)
+        .json({ message: "Email or Password is incorrect" });
     console.log(user.active);
     if (user.active == "false") {
-      return res.json({ message: "Your Account has been Deactivated" });
+      return res
+        .status(401)
+        .json({ message: "Your Account has been Deactivated" });
     }
     //  console.log(`matched`);
 
-    const token = jwt.sign({ id: user._id }, "mysupersecret786", {
+    const token = jwt.sign({ id: user._id }, "zainwaseem786", {
       expiresIn: "5d",
     });
 
@@ -78,7 +84,7 @@ const login = async (req, res, next) => {
 const getALLUsers = async (req, res, next) => {
   try {
     const users = await User.find();
-    return res.json(users);
+    return res.status(200).json(users);
   } catch (error) {
     next(error);
   }
@@ -101,7 +107,7 @@ const getUser = async (req, res, next) => {
   }
   try {
     const user = await User.findById(req.params.id);
-    return res.json(user);
+    return res.status(200).json(user);
   } catch (error) {
     next(error);
   }
@@ -124,7 +130,7 @@ const updateUser = async (req, res, next) => {
       },
       { new: true }
     );
-    return res.json({ message: `User has been updated` });
+    return res.status(200).json({ message: `User has been updated` });
   } catch (error) {
     next(error);
   }
@@ -138,7 +144,7 @@ const deleteUser = async (req, res, next) => {
   try {
     const daletedUser = await User.findByIdAndDelete(req.params.id);
     console.log(daletedUser);
-    return res.json({ message: `User has been deleted` });
+    return res.status(200).json({ message: `User has been deleted` });
   } catch (error) {
     next(error);
   }

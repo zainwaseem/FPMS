@@ -7,14 +7,14 @@ const AddProduct = async (req, res, next) => {
     let { title, desc, img, price, size } = req.body;
 
     if (!title || !desc || !img || !price || !size) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: "Please provide all details of the product",
       });
     }
 
     const existProduct = await Product.findOne({ title });
     if (existProduct) {
-      return res.json({ message: "Product already exists" });
+      return res.status(403).json({ message: "Product already exists" });
     }
     // cloudinary
     const result = await cloudinary.uploader.upload(img, {
@@ -42,10 +42,10 @@ const AddProduct = async (req, res, next) => {
   }
 };
 
-const getALLProducts = async (req, res) => {
+const getALLProducts = async (req, res, next) => {
   try {
     const Products = await Product.find();
-    return res.json(Products);
+    return res.status(200).json(Products);
   } catch (error) {
     next(error);
   }
@@ -54,7 +54,7 @@ const getALLProducts = async (req, res) => {
 const getProduct = async (req, res, next) => {
   try {
     const singleProduct = await Product.findById(req.params.id);
-    return res.json(singleProduct);
+    return res.status(200).json(singleProduct);
   } catch (error) {
     next(error);
   }
@@ -71,7 +71,7 @@ const updateProduct = async (req, res, next) => {
       price,
       size,
     });
-    return res.json({ message: `Product has been updated` });
+    return res.status(200).json({ message: `Product has been updated` });
   } catch (error) {
     next(error);
   }
@@ -83,7 +83,7 @@ const deleteProduct = async (req, res, next) => {
   }
   try {
     const daletedProduct = await Product.findByIdAndDelete(req.params.id);
-    return res.json({ message: `Product has been deleted` });
+    return res.status(200).json({ message: `Product has been deleted` });
   } catch (error) {
     next(error);
   }
