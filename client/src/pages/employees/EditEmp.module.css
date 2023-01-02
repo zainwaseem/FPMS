@@ -1,0 +1,15 @@
+.EmployeeForm {
+  margin: auto;
+  padding: 50px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.EmployeeForm input {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  outline: none;
+}

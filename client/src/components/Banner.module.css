@@ -1,5 +1,5 @@
 .banner {
-  background-image: linear-gradient(#34393aeb, rgba(128, 128, 128, 0.527)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.479), rgba(0, 0, 0, 0.607)),
     url("../img/Banner1.jpg");
   height: 100vh;
   background-size: cover;
@@ -29,7 +29,18 @@
   flex-direction: column;
   height: 170px;
 }
+.wellcome {
+  height: 100vh;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wellcome h2 {
+  font-size: 5rem;
+  color: #0B5ED7;
+  text-align: center;
+}
 .box > h3 {
   padding: 1rem;
 }

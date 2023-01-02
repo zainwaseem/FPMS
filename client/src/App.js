@@ -19,6 +19,8 @@ import Error from "./components/Error/Error";
 import Cart from "./pages/product/Cart";
 import Register from "./pages/register/Register";
 import AddProduct from "./pages/product/AddProduct";
+import EditEmp from "./pages/employees/EditEmp";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
@@ -53,6 +55,7 @@ function App() {
               <Route path="/:id" element={<EditUser />} />
               <Route path="/employees" element={<Employee />} />
               <Route path="/adduser" element={<AddUser />} />
+              <Route path="/materials" element={<Material />} />
               {/* <Route path="/addemployee" element={<AddEmp />} /> */}
             </>
           ) : null}
@@ -64,21 +67,23 @@ function App() {
           ) : null}
           {isLoggedIn === "supervisor" ? (
             <>
-              <Route path="/orders" element={<Product />} />
+              <Route path="/orders" element={<h1>orders</h1>} />
+
               <Route path="/employees" element={<Employee />} />
               <Route path="/addemployee" element={<AddEmp />} />
+              <Route path="/:id" element={<EditEmp />} />
             </>
           ) : null}
           {isLoggedIn === "user" ? (
             <>
               <Route path="/products" element={<Product />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/home" element={<h1>Home</h1>} />
+              <Route path="/about" element={<h1>about</h1>} />
+              <Route path="/contact" element={<h1>Contact Us</h1>} />
+              <Route path="/products" element={<Product />} />
             </>
           ) : null}
-          {/* <Route path="/home" element={<h1>Home</h1>} /> */}
-          {/* <Route path="/about" element={<h1>about</h1>} /> */}
-          {/* <Route path="/contact" element={<h1>Contact Us</h1>} /> */}
-          {/* <Route path="/products" element={<Product />} /> */}
           <Route path="*" element={<Error />} />
         </Routes>
 
@@ -94,6 +99,7 @@ function App() {
         />
         {/* </SideBar> */}
         {/* <Banner /> */}
+        <Footer />
       </BrowserRouter>
     </>
   );

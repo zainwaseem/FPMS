@@ -23,7 +23,8 @@ const Navbar = () => {
 
     try {
       const res = await axios.get("http://localhost:5000/logout");
-      if (res.status === 200) res.data && window.location.replace("/login");
+      if (res.status === 200)
+        return res.data && window.location.replace("/login");
     } catch (error) {
       console.log(error);
     }
@@ -58,21 +59,21 @@ const Navbar = () => {
                 )}
               </li>
               <li className="nav-item">
-                {isLoggedIn && (
+                {isLoggedIn === "user" || isLoggedIn === "owner" ? (
                   <Link className="nav-link" to="products">
                     Product
                   </Link>
-                )}
+                ) : null}
               </li>
               <li className="nav-item">
-                {isLoggedIn === "supervisor" && (
+                {isLoggedIn === "supervisor" || isLoggedIn === "owner" ? (
                   <Link className="nav-link" to="employees">
                     Employees
                   </Link>
-                )}
+                ) : null}
               </li>
               <li className="nav-item">
-                {isLoggedIn === "manager" ? (
+                {isLoggedIn === "manager" || isLoggedIn === "owner" ? (
                   <Link className="nav-link" to="/materials">
                     Material
                   </Link>
@@ -82,6 +83,13 @@ const Navbar = () => {
                 {isLoggedIn === "owner" && (
                   <Link className="nav-link" to="/users">
                     Users
+                  </Link>
+                )}
+              </li>{" "}
+              <li className="nav-item">
+                {isLoggedIn && (
+                  <Link className="nav-link" to="/orders">
+                    Orders
                   </Link>
                 )}
               </li>

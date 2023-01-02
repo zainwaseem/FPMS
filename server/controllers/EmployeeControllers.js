@@ -76,7 +76,7 @@ const updateEmployee = async (req, res) => {
       endDate,
       idCard,
     });
-    return res.json(updatedEmployee);
+    res.status(200).json(`Employee updated successfully`);
   } catch (error) {
     console.log(error);
   }

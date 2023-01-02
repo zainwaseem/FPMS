@@ -126,7 +126,7 @@ const EditUser = () => {
           </div>
           <div class="mb-2">
             <label for="exampleInputEmail1" class="form-label">
-              Role
+              Block
             </label>
             <br />
             <select
@@ -134,9 +134,9 @@ const EditUser = () => {
               onChange={handleActiveChange}
             >
               <option value="true" selected>
-                True
+                Activate
               </option>
-              <option value="false">False</option>
+              <option value="false">Deactivate</option>
             </select>
           </div>
 

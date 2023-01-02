@@ -24,7 +24,9 @@ const Banner = () => {
             </div>
           </div>
         ) : (
-          <h1>Well Come</h1>
+          <div className={styles.wellcome}>
+            <h2>Factory Production Management</h2>
+          </div>
         )}
       </div>
     </>

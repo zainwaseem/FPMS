@@ -53,7 +53,7 @@ const Login = () => {
           className={styles.loginInput}
           placeholder=""
         />
-        <button className="loginButton cta" onClick={handleLogin}>
+        <button className="loginButton cta " onClick={handleLogin}>
           Login
         </button>
         {/* <p style={{ color: "red" }}>{error && message}</p> */}
