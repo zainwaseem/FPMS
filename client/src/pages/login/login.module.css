@@ -1,26 +1,32 @@
 .login {
-  height: calc(100vh - 60px);
+  height: 89.5vh;
+  background-image: linear-gradient(
+      #1a1a1a52,
+      #0c0c0c8a,
+      rgba(22, 26, 24, 0.555)
+    ),
+    url("../../img/Banner1.jpg");
+
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-size: cover;
-  background-position: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), #18191ace),
-    url("../../img/Banner.jpg");
 }
 
 .loginTitle {
   font-size: 50px;
-  color: #b1dae7;
+  color: #2a2d2e;
 }
 .loginForm {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   padding: 50px;
-  border-radius: 10px;
-  background-color: #b1dae7;
+  border-radius: 5px;
+  background-color: #b1dae7d8;
 }
 .loginForm > label {
   margin: 10px 0;

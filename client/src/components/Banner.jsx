@@ -1,9 +1,12 @@
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import AuthContext from "../context/Authcontext";
 import styles from "./Banner.module.css";
 
 const Banner = () => {
   const { isLoggedIn } = useContext(AuthContext);
+  const { products } = useSelector((state) => state);
+  console.log();
 
   return (
     <>
@@ -11,7 +14,7 @@ const Banner = () => {
         {isLoggedIn === "owner" ? (
           <div className={styles.contain}>
             <div className={styles.box} style={{ background: "#E31C24" }}>
-              <h3>Orders</h3>
+              <h3>Users</h3>
               <span>4</span>
             </div>
             <div className={styles.box} style={{ background: "#026EB5" }}>
@@ -19,13 +22,13 @@ const Banner = () => {
               <span>44</span>
             </div>
             <div className={styles.box} style={{ background: "#38AE48" }}>
-              <h3>Users</h3>
-              <span>22</span>
+              <h3>Products</h3>
+              <span>{products.items.length}</span>
             </div>
           </div>
         ) : (
           <div className={styles.wellcome}>
-            <h2>Factory Production Management</h2>
+            {/* <h2>Factory Production Management</h2> */}
           </div>
         )}
       </div>

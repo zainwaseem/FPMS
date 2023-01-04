@@ -1,109 +1,96 @@
 .employees {
   height: 100vh;
   width: 100%;
-  overflow: scroll;
-}
-.cardslist {
-  z-index: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.card {
-  margin: 30px auto;
-  width: 400px;
-  height: auto;
-  border-radius: 40px;
-  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25),
-    -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
-  cursor: pointer;
-  transition: 0.4s;
-}
-
-.card .card_image {
-  width: inherit;
-  height: inherit;
-  border-radius: 40px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.card .AddButton {
-  width: inherit;
-  height: inherit;
-  font-size: 10rem;
-  border-radius: 40px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.card .card_image img {
-  width: 50%;
-  height: 50%;
-
-  /* border-top-left-radius: 40px; */
-  /* border-top-right-radius: 40px; */
-  border-radius: 20px 20px 0px 0px;
-  object-fit: cover;
-}
-
-.card .card_title {
-  text-align: center;
-  border-radius: 0px 0px 40px 40px;
-  font-family: sans-serif;
-  font-weight: bold;
-  font-size: 30px;
-  /* margin-top: -80px; */
-  height: 40px;
-  background-color: #b1dae7;
-}
-
-.card:hover {
-  transform: scale(0.99, 0.99);
-  box-shadow: 3px 3px 18px 10px #234567ab, -3px -3px 18px 10px #b1dae7bb;
-}
-
-.title-white {
-  color: white;
-}
-
-.title-black {
-  color: black;
-}
-.AddUserLink {
-  text-decoration: none;
-}
-
-@media all and (max-width: 500px) {
-  .card-list {
-    /* On small screens, we are no longer using row direction but column */
-    flex-direction: column;
-  }
-}
-.EditLink {
-  color: #234567;
-}
-.icons {
+  margin-bottom: 50px;
+  padding-bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.card {
+  margin-left: 20px;
+  margin-top: 11px;
+  /* padding: 10px; */
+  width: 300px;
+  height: 570px;
+  border-radius: 2px;
+  text-align: center;
+  color: #000;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.368);
+  gap: 30rem;
 }
 
-/* .card {
-  margin: 30px auto;
-  width: 300px;
-  height: 300px;
-  border-radius: 40px;
-  background-image: url("https://i.redd.it/b3esnz5ra34y.jpg");
-  background-size: cover;
+.coverPhoto {
+  position: relative;
+  background: url(../../img/logo.png);
+  background-position: center center;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25),
-    -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
-  transition: 0.4s;
-} */
+  object-fit: cover;
+  height: 150px;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+  position: absolute;
+  width: 100px;
+  bottom: -50px;
+  left: 12px;
+  border-radius: 50%;
+  border: 2px solid #222;
+  background: rgba(34, 34, 34, 0.459);
+  padding-top: 4px;
+}
+
+.profileName {
+  font-size: 20px;
+  margin: 14px 0 0 120px;
+}
+
+.about {
+  margin-top: 24px;
+  line-height: 1.6;
+  margin-bottom: 0;
+  color: #4884c1;
+}
+
+.btn {
+  margin: 10px 5px;
+  background: #b1dae7;
+  padding: 8px 21px;
+  border-radius: 2px;
+  border: 1px solid #b1dae7;
+  font-weight: bold;
+  font-family: Montserrat;
+  cursor: pointer;
+  color: rgb(35, 34, 65);
+  transition: 0.5s;
+}
+
+.btn:last-of-type {
+  background: transparent;
+  border-color: #b1dae7;
+  color: #222;
+}
+
+.btn:hover {
+  background: #b1dae7;
+  color: #222;
+}
+.icons {
+  padding: 0px 10px;
+  padding-bottom: 110px;
+  color: red;
+  margin-bottom: 90px;
+}
+#btnPrimary {
+  color: white;
+  background: rgba(255, 0, 0, 0.74);
+}
+#btnPrimaryEdit {
+  color: #222;
+  background: #b1dae7;
+}

@@ -16,7 +16,6 @@ const AddUser = () => {
       return toast("Please select any role");
     }
     await setRole(e.target.value);
-    console.log(e.target.value);
   };
   async function hanldeSubmit(e) {
     e.preventDefault();
@@ -46,50 +45,46 @@ const AddUser = () => {
     <div className={styles.container}>
       <div className={styles.adduser}>
         <form onSubmit={hanldeSubmit}>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleInputEmail1" className="form-label">
               Name
             </label>
+
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               type="text"
-              class="form-control"
+              className="form-control"
               required={true}
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
             />
           </div>
 
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleInputEmail1" className="form-label">
               Email
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+              className="form-control"
               required={true}
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleInputPassword1" className="form-label">
               Password
             </label>
             <input
               type="password"
-              class="form-control"
+              className="form-control"
               required={true}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              id="exampleInputPassword1"
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleInputEmail1" className="form-label">
               Role
             </label>
             <br />
@@ -104,24 +99,24 @@ const AddUser = () => {
               <option value="supervisor">Supervisor</option>
             </select>
 
-            {/* <label for="exampleInputEmail1" class="form-label">
+            {/* <label for="exampleInputEmail1" className="form-label">
               Role
             </label>
             <input
               onChange={(e) => setRole(e.target.value)}
               value={role}
               type="text"
-              class="form-control"
+              className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
             /> */}
           </div>
 
-          <button type="submit" class={styles.loginButton}>
+          <button type="submit" className={styles.loginButton}>
             Add User
           </button>
         </form>
-        {/* <span className="text-danger">{error && message}</span> */}
+        {/* <span classNameName="text-danger">{error && message}</span> */}
       </div>
     </div>
   );

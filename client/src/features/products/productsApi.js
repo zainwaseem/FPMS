@@ -11,4 +11,5 @@ export const productsApi = createApi({
     }),
   }),
 });
+
 export const { useGetAllProductsQuery } = productsApi;

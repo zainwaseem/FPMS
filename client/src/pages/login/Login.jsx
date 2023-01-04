@@ -19,6 +19,9 @@ const Login = () => {
       });
       if (res.data.message) {
         // seterror(true);
+        console.log(res.data.message);
+      }
+      if (!res.status === 200) {
         toast(res.data.message);
       }
       if (res.data.token) {
@@ -26,7 +29,7 @@ const Login = () => {
         res.data && window.location.replace("/");
       }
     } catch (error) {
-      toast.error(`Something Went Wrong` + error.message);
+      toast.error(`Something Went Wrong`);
       // seterror(true);
     }
     setInterval(() => {
@@ -35,25 +38,31 @@ const Login = () => {
   };
   return (
     <div className={styles.login}>
-      <span className={styles.loginTitle}>Login</span>
-      <form className={styles.loginForm}>
-        <label>Email</label>
+      <form className={styles.loginForm} onSubmit={handleLogin}>
+        {/* <span className={styles.loginTitle}>Login</span> */}
+        {/* <h1>Login</h1> */}
+        <label className="ps-2">Email</label>
         <input
           type="text"
           value={email}
-          className={styles.loginInput}
+          className="form-control"
+          required={true}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="email@nazran.com"
         />
-        <label>Password</label>
+        <label className="ps-2">Password</label>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className={styles.loginInput}
-          placeholder=""
+          className="form-control"
+          required={true}
         />
-        <button className="loginButton cta " onClick={handleLogin}>
+        <button
+          type="submit"
+          className="btn btn-primary w-25 ps-2 ms-1 mt-3"
+          id={styles.loginButton}
+        >
           Login
         </button>
         {/* <p style={{ color: "red" }}>{error && message}</p> */}

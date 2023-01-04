@@ -21,6 +21,8 @@ import Register from "./pages/register/Register";
 import AddProduct from "./pages/product/AddProduct";
 import EditEmp from "./pages/employees/EditEmp";
 import Footer from "./components/footer/Footer";
+import Spinner from "./components/Spinner/Spinner";
+import Orders from "./pages/Orders/Orders.jsx";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
@@ -47,10 +49,11 @@ function App() {
           <Route path="/" element={<Banner />} />
           {isLoggedIn === "owner" ? (
             <>
+              <Route path="/spin" element={<Spinner />} />
               <Route path="/products" element={<Product />} />
               <Route path="/newproduct" element={<AddProduct />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/orders" element={<h1>orders</h1>} />
+              <Route path="/orders" element={<Orders />} />
               <Route path="/users" element={<User />} />
               <Route path="/:id" element={<EditUser />} />
               <Route path="/employees" element={<Employee />} />
@@ -67,7 +70,7 @@ function App() {
           ) : null}
           {isLoggedIn === "supervisor" ? (
             <>
-              <Route path="/orders" element={<h1>orders</h1>} />
+              <Route path="/orders" element={<Orders />} />
 
               <Route path="/employees" element={<Employee />} />
               <Route path="/addemployee" element={<AddEmp />} />
@@ -77,6 +80,7 @@ function App() {
           {isLoggedIn === "user" ? (
             <>
               <Route path="/products" element={<Product />} />
+              <Route path="/orders" element={<Orders />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/home" element={<h1>Home</h1>} />
               <Route path="/about" element={<h1>about</h1>} />

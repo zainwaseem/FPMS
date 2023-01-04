@@ -85,7 +85,7 @@ const Navbar = () => {
                     Users
                   </Link>
                 )}
-              </li>{" "}
+              </li>
               <li className="nav-item">
                 {isLoggedIn && (
                   <Link className="nav-link" to="/orders">
@@ -97,7 +97,7 @@ const Navbar = () => {
 
             {!isLoggedIn && (
               <>
-                <Link className=" btn btn-primary" to="/login">
+                <Link className="btn btn-primary" to="/login">
                   <span>Login</span>
                 </Link>
                 <Link className="ms-2 btn btn-primary" to="/register">

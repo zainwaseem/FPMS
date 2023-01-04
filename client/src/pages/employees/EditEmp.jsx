@@ -55,13 +55,11 @@ const EditEmp = () => {
       <form onSubmit={handleUpdateEmp}>
         <h5>Employee Details</h5>
         <br />
-        <div class="mb-3" style={{ display: "flex" }}>
+        <div className="mb-3" style={{ display: "flex" }}>
           <input
             type="text"
             placeholder="Name"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            className="form-control"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -69,9 +67,7 @@ const EditEmp = () => {
           <input
             type="email"
             placeholder="Email"
-            class="mx-2 form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            className="mx-2 form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -80,9 +76,7 @@ const EditEmp = () => {
           <input
             type="tel"
             placeholder="Phone"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            className="form-control"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -90,9 +84,8 @@ const EditEmp = () => {
             placeholder="NIC"
             onChange={(e) => setidCard(e.target.value)}
             type="number"
-            class="form-control mx-2"
+            className="form-control mx-2"
             value={idCard}
-            id="exampleInputPassword1"
           />
         </div>{" "}
         <div class="mb-3" style={{ display: "flex" }}>
@@ -100,18 +93,15 @@ const EditEmp = () => {
             type="text"
             placeholder="Experience"
             onChange={(e) => setExpreience(e.target.value)}
-            class="form-control "
-            id="exampleInputEmail1"
+            className="form-control "
             value={experience}
-            aria-describedby="emailHelp"
           />
 
           <input
             placeholder="Address"
             type="text"
             onChange={(e) => setaddress(e.target.value)}
-            class="form-control mx-2"
-            id="exampleInputPassword1"
+            className="form-control mx-2"
             value={address}
           />
         </div>
@@ -122,12 +112,11 @@ const EditEmp = () => {
             type="date"
             /* width: 100%; */
             value={endDate}
-            class="form-control "
+            className="form-control "
             onChange={(e) => setEndDate(e.target.value)}
-            id="exampleInputPassword1"
           />
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Add Employee
         </button>
       </form>

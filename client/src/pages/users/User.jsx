@@ -1,78 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import usr1 from "../../img/man.png";
+// import usr1 from "../../img/man.png";
 import { MdDelete } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
-// import { RiLockPasswordFill } from "react-icons/ri";
-// import { SiNamecheap } from "react-icons/si";
-// import { BiUser } from "react-icons/bi";
 import { AiFillEdit } from "react-icons/ai";
 import styles from "./User.module.css";
 import { toast } from "react-toastify";
-
-// import usr2 from "../../img/2.png";
-// import usr3 from "../../img/3.png";
+import Spinner from "../../components/Spinner/Spinner";
+import userImage from "../../img/sample-img.jpeg";
 
 const User = () => {
-  // const users = [
-  //   {
-  //     name: "zain waseem",
-  //     role: "manager",
-  //     email: "zain@msds.scsdo",
-  //     img: usr1,
-  //   },
-  //   {
-  //     name: "zain waseem",
-  //     role: "manager",
-  //     email: "zain@msds.scsdo",
-  //     img: usr1,
-  //   },
-  //   {
-  //     name: "zain waseem",
-  //     role: "manager",
-  //     email: "zain@msds.scsdo",
-  //     img: usr1,
-  //   },
-  //   {
-  //     name: "zain waseem",
-  //     role: "manager",
-  //     email: "zain@msds.scsdo",
-  //     img: usr2,
-  //   },
-  //   {
-  //     name: "zain waseem",
-  //     role: "manager",
-  //     email: "zain@msds.scsdo",
-  //     img: usr1,
-  //   },
-  //   {
-  //     name: "zain waseem",
-  //     role: "manager",
-  //     email: "zain@msds.scsdo",
-  //     img: usr2,
-  //   },
-  //   {
-  //     name: "zain waseem",
-  //     role: "manager",
-  //     email: "zain@msds.scsdo",
-  //     img: usr1,
-  //   },
-  //   {
-  //     name: "zain waseem",
-  //     role: "manager",
-  //     email: "zain@msds.scsdo",
-  //     img: usr3,
-  //   },
-  //   {
-  //     name: "zain waseem",
-  //     role: "manager",
-  //     email: "zain@msds.scsdo",
-  //     img: usr1,
-  //   },
-  // ];
-  // // const [user, setUsers] = useState(users);
-  const [user, setusers] = useState([]);
+  const [users, setusers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [query, setQuery] = useState("");
+
   const handleDelete = async (id) => {
     const res = await axios.delete(`http://localhost:5000/users/${id}`);
     toast(res.data.message);
@@ -80,14 +22,16 @@ const User = () => {
   useEffect(() => {
     handleDelete();
   }, []);
-  const handleEdit = async () => {};
+
   useEffect(() => {
+    setLoading(true);
     const userfunc = async () => {
       const res = await axios.get("http://localhost:5000/users");
       setusers(res.data);
     };
+    setLoading(false);
     userfunc();
-  }, [user]);
+  }, [users]);
 
   return (
     <>
@@ -104,39 +48,38 @@ const User = () => {
             </div>
           </div>
         </Link>
-        {/* Registered users */}
+        <h4 className="ps-4 pt-5 mt-5 ">Registered users</h4>
+        <div class="input-group">
+          <div class="form-outline">
+            <input
+              id="search-input"
+              placeholder="Serach User..."
+              onChange={(e) => setQuery(e.target.value)}
+              type="search"
+              class="form-control ms-4"
+            />
+          </div>
+        </div>
+
         <div className={styles.cardslist}>
-          {user
-            ? user.map((u, index) => (
+          {!loading ? (
+            users
+              .filter((user) => user.name.toLowerCase().includes(query))
+              .map((u, index) => (
                 <div className={styles.card} key={index}>
                   <div className={styles.card_image}>
-                    <img src={usr1} alt="" />
+                    <img src={userImage} alt="" />
                     <div className={styles.userData}>
-                      <h3>
-                        {/* <SiNamecheap /> &nbsp; */}
-                        {u.name}
-                      </h3>
-                      <p>
-                        {/* <AiOutlineMail /> */}
-                        {/* &nbsp; */}
-                        {u.email}
-                      </p>
-                      <p>
-                        {/* &nbsp; &nbsp; */}
-                        {/* <RiLockPasswordFill /> */}
-                        {u.password}
-                      </p>
-                      {/* <p>{u.password}</p> */}
+                      <h3>{u.name}</h3>
+                      <p>{u.email}</p>
+                      <p>{u.password}</p>
                       <div className={styles.icons}>
                         <MdDelete
                           size={25}
                           onClick={() => handleDelete(u._id)}
                         />
                         <Link to={`/${u._id}`} className={styles.EditLink}>
-                          <AiFillEdit
-                            size={25}
-                            onClick={() => handleEdit(u._id)}
-                          />
+                          <AiFillEdit size={25} />
                         </Link>
                       </div>
                     </div>
@@ -146,7 +89,9 @@ const User = () => {
                   </div>
                 </div>
               ))
-            : `No user Found`}
+          ) : (
+            <Spinner />
+          )}
         </div>
       </div>
     </>

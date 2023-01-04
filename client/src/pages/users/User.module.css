@@ -10,6 +10,8 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding-bottom: 90px;
+  gap: 45px;
 }
 #form1 {
   width: 14rem;

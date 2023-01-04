@@ -6,7 +6,7 @@ const Material = () => {
     <>
       <div className="container">
         <div className="table-wrapper">
-          <div class="table-title">
+          <div className="table-title">
             <div className="row">
               <div id="saleOrder" className="col-sm-offset-5">
                 <h2>
@@ -42,7 +42,6 @@ const Material = () => {
                 </h5>
                 <input
                   type="text"
-                  autocomplete="off"
                   className="form-control ui-autocomplete-input"
                   name="Supplier.Name"
                   id="supplier"
@@ -60,7 +59,7 @@ const Material = () => {
                 </h5>
                 <input
                   type="text"
-                  autocomplete="on"
+                  // autocomplete="on"
                   className="form-control"
                   name="Supplier.Address"
                   id="supplierAddress"
@@ -121,7 +120,7 @@ const Material = () => {
                 <td>
                   <input
                     type="number"
-                    autocomplete="off"
+                    // autocomplete="off"
                     className="form-control classBGcolor"
                     name="PurchaseOrderDetail[0].PurchasePrice"
                     id="purchasePrice0"
@@ -130,7 +129,7 @@ const Material = () => {
                 <td>
                   <input
                     type="number"
-                    autocomplete="off"
+                    // autocomplete="off"
                     className="form-control"
                     name="PurchaseOrderDetail[0].Quantity"
                     id="quantity0"

@@ -4,28 +4,28 @@ const AddEmployee = async (req, res, next) => {
   try {
     const { name, address, experience, phone, email, endDate, idCard } =
       req.body;
-    if (!name || !address || !experience || !phone || !email || !idCard) {
-      return res.status(400).json({
+    if (!name || !address || !phone || !email || !idCard) {
+      return res.json({
         message: "Please fill all fields",
       });
     }
     if (phone.length < 11) {
-      return res.status(400).json({
+      return res.json({
         message: "Phone Number contains 11 digits",
       });
     }
     if (idCard.length < 13) {
-      return res.status(400).json({
+      return res.json({
         message: "NIC contains 13 digits",
       });
     }
     const exist = await Employee.findOne({ email });
     if (exist) {
-      return res.status(403).json({ message: "Employee already exists" });
+      return res.json({ message: "Email already exists" });
     }
     const NICexist = await Employee.findOne({ idCard });
     if (NICexist) {
-      return res.json({ message: "Employee already exists" });
+      return res.json({ message: "NIC already exists" });
     }
 
     const newEmployee = new Employee({
@@ -38,32 +38,32 @@ const AddEmployee = async (req, res, next) => {
       idCard,
     });
     await newEmployee.save();
-    res.status(200).json(`Employee added successfully`);
+    return res.json({ message: "Employee added successfully" });
   } catch (error) {
     // next(error);
     next(error);
   }
 };
 
-const getALLEmployees = async (req, res, next) => {
+const getALLEmployees = async (req, res) => {
   try {
     const employees = await Employee.find();
-    return res.status(200).json(employees);
+    return res.json(employees);
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
 
-const getEmployee = async (req, res, next) => {
+const getEmployee = async (req, res) => {
   try {
     const employee = await Employee.findById(req.params.id);
-    return res.status(200).json(employee);
+    return res.json(employee);
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
 
-const updateEmployee = async (req, res, next) => {
+const updateEmployee = async (req, res) => {
   const { name, address, experience, phone, email, endDate, idCard } = req.body;
 
   try {
@@ -78,15 +78,15 @@ const updateEmployee = async (req, res, next) => {
     });
     res.status(200).json(`Employee updated successfully`);
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
 const deleteEmployee = async (req, res) => {
   try {
     const daletedEmployee = await Employee.findByIdAndDelete(req.params.id);
-    return res.status(200).json(`Employee has been deleted`);
+    return res.json(daletedEmployee);
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
 

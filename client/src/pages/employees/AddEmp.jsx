@@ -25,7 +25,7 @@ const AddEmp = () => {
       });
       if (res.data.message) {
         console.log(res.data.message);
-        toast(res.data.message);
+        toast.info(res.data.message);
         // res.data && window.location.replace("/employees");
       }
     } catch (err) {
@@ -37,11 +37,11 @@ const AddEmp = () => {
       <form onSubmit={handleSubmit}>
         <h5>Employee Details</h5>
         <br />
-        <div class="mb-3" style={{ display: "flex" }}>
+        <div className="mb-3" style={{ display: "flex" }}>
           <input
             type="text"
             placeholder="Name"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={(e) => setname(e.target.value)}
@@ -50,7 +50,7 @@ const AddEmp = () => {
           <input
             type="email"
             placeholder="Email"
-            class="mx-2 form-control"
+            className="mx-2 form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={(e) => setEmail(e.target.value)}
@@ -60,7 +60,7 @@ const AddEmp = () => {
           <input
             type="tel"
             placeholder="Phone"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={(e) => setPhone(e.target.value)}
@@ -69,7 +69,7 @@ const AddEmp = () => {
             placeholder="NIC"
             onChange={(e) => setidCard(e.target.value)}
             type="number"
-            class="form-control mx-2"
+            className="form-control mx-2"
             id="exampleInputPassword1"
           />
         </div>{" "}
@@ -78,7 +78,7 @@ const AddEmp = () => {
             type="text"
             placeholder="Experience"
             onChange={(e) => setExpreience(e.target.value)}
-            class="form-control "
+            className="form-control "
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
           />
@@ -87,17 +87,17 @@ const AddEmp = () => {
             placeholder="Address"
             type="text"
             onChange={(e) => setaddress(e.target.value)}
-            class="form-control mx-2"
+            className="form-control mx-2"
             id="exampleInputPassword1"
           />
         </div>
-        <div class="mb-3">
+        <div className="mb-3">
           <label htmlFor="">End Date</label>
           <input
             placeholder="End Date"
             type="date"
             /* width: 100%; */
-            class="form-control "
+            className="form-control "
             onChange={(e) => setEndDate(e.target.value)}
             id="exampleInputPassword1"
           />
