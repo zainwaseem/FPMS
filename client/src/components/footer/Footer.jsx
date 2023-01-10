@@ -8,21 +8,18 @@ const Footer = () => {
       <footer>
         <div className={styles.inside__footer}>
           <p className={styles.copyright}>
-            &copy;2022 Nazran, Inc. All Rights Reserved.
+            &copy;{new Date().getFullYear()} Nazran, Inc. All Rights Reserved.
           </p>
           <div className={styles.social}>
             <a href="https://www.facebook.com/" className="p-3">
-              <title>Facebook</title>
-              <BsFacebook size={20} />
+              <BsFacebook size={25} />
             </a>
             <a href="https://www.instagram.com/" className="p-3">
-              <title>Instagram</title>
-              <AiOutlineInstagram size={20} />
+              <AiOutlineInstagram size={25} />
             </a>
 
             <a href="https://twitter.com/" className="p-3 textwhite">
-              <title>Twitter</title>
-              <AiOutlineTwitter size={20} className="twitter" />
+              <AiOutlineTwitter size={25} className="twitter" />
             </a>
           </div>
         </div>

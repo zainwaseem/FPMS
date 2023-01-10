@@ -1,7 +1,8 @@
 .EmployeeForm {
+  background-image: radial-gradient( circle farthest-corner at 92.3% 71.5%,  rgba(83,138,214,1) 0%, rgba(134,231,214,1) 90% );
   margin: auto;
   padding: 50px;
-  height: auto;
+  height: 89vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;

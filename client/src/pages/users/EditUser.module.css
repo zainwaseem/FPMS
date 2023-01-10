@@ -6,6 +6,11 @@
       rgba(136, 221, 187, 0.555)
     ),
     url("../../img/Banner1.jpg");
+      background-image: radial-gradient(
+    circle farthest-corner at 7.2% 13.6%,
+    rgba(37, 249, 245, 0.158) 0%,
+    rgba(8, 70, 218, 0.6) 90%
+  );
 
   background-position: center center;
   background-size: cover;
@@ -13,17 +18,13 @@
   background-repeat: no-repeat;
   padding-top: 3rem;
 }
-/* .roles {
-  outline: none;
-  border: none;
-  border-radius: 0;
-} */
+
 
 .container .adduser {
   padding: 10px 0px;
 
   width: 18rem;
-  background-color: rgb(195, 221, 211);
+  /* background-color: rgb(195, 221, 211); */
   border-radius: 10px;
   display: flex;
   justify-content: center;

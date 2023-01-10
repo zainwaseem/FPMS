@@ -1,4 +1,4 @@
-* {
+/* * {
   padding: 0;
   margin: 0;
 }
@@ -8,24 +8,16 @@
 
   display: flex;
   overflow-y: scroll;
-  /* justify-content: flex-start; */
-  /* align-items: flex-start; */
   position: relative;
 }
 main {
   width: 100%;
-  /* padding-left: 25px; */
-  /* margin-left: 25px; */
   height: 100vh;
 }
 .sidebar {
   background: rgb(76, 114, 240);
-  /* background: rgb(76, 114, ; */
   color: #fff;
   z-index: 999;
-  /* position: fixed; */
-  /* top: 0; */
-  /* left: 0; */
 
   height: 100vh;
   width: 200px;
@@ -46,7 +38,6 @@ main {
 .bars {
   display: flex;
   font-size: 25px;
-  /* margin-left: 50px; */
 }
 .link {
   display: flex;
@@ -67,4 +58,4 @@ main {
 .icon,
 .link_text {
   font-size: 20px;
-}
+} */

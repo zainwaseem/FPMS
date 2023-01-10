@@ -1,37 +1,40 @@
-import React, { useEffect } from "react";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
   addToCart,
   clearCart,
   decreaseCart,
   getTotals,
   removeFromCart,
-} from "../../features/products/cartSlice";
-import "./Cart.css";
+} from '../../features/products/cartSlice'
+import './Cart.css'
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart);
-  console.log(cart.cartItems);
-  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart)
+  console.log(cart.cartItems)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getTotals());
-  }, [cart, dispatch]);
+    dispatch(getTotals())
+  }, [cart, dispatch])
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-  };
+    dispatch(addToCart(product))
+  }
   const handleDecreaseCart = (product) => {
-    dispatch(decreaseCart(product));
-  };
+    dispatch(decreaseCart(product))
+  }
   const handleRemoveFromCart = (product) => {
-    dispatch(removeFromCart(product));
-  };
+    dispatch(removeFromCart(product))
+  }
   const handleClearCart = () => {
-    dispatch(clearCart());
-  };
+    dispatch(clearCart())
+  }
+  const placeOrder = () => {
+    console.log(`ordered placed succuesfully`)
+  }
   return (
     <div className="cart-container">
       <h2>Shopping Cart</h2>
@@ -69,11 +72,19 @@ const Cart = () => {
                   </div>
                   <div className="cart-product-price">${cartItem.price}</div>
                   <div className="cart-product-quantity">
-                    <button onClick={() => handleDecreaseCart(cartItem)}>
+                    <button
+                      className="descreseincreaseButon"
+                      onClick={() => handleDecreaseCart(cartItem)}
+                    >
                       -
                     </button>
                     <div className="count">{cartItem.cartQuantity}</div>
-                    <button onClick={() => handleAddToCart(cartItem)}>+</button>
+                    <button
+                      className="descreseincreaseButon"
+                      onClick={() => handleAddToCart(cartItem)}
+                    >
+                      +
+                    </button>
                   </div>
                   <div className="cart-product-total-price">
                     ${cartItem.price * cartItem.cartQuantity}
@@ -91,8 +102,8 @@ const Cart = () => {
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
               <p>Taxes and shipping calculated at checkout</p>
-              <button>Order Now</button>
-              <div className="continue-shopping">
+              <button onClick={placeOrder}>Order Now</button>
+              <div className="continue-shopping mb-4">
                 <Link to="/products">
                   <AiOutlineArrowLeft />
                   <span>Continue Adding</span>
@@ -103,7 +114,7 @@ const Cart = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

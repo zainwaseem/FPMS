@@ -1,34 +1,33 @@
-import axios from "axios";
-import { useContext, useEffect } from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import AuthContext from "../context/Authcontext";
-import logo from "../img/logo.png";
-import { useDispatch, useSelector } from "react-redux";
-import "./Navbar.css";
-import { getTotals } from "../features/products/cartSlice";
+import axios from 'axios'
+import { useContext, useEffect } from 'react'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
+import AuthContext from '../context/Authcontext'
+import logo from '../img/logo.png'
+import { useDispatch, useSelector } from 'react-redux'
+import './Navbar.css'
+import { getTotals } from '../features/products/cartSlice'
 
 const Navbar = () => {
-  const { isLoggedIn } = useContext(AuthContext);
-  const cart = useSelector((state) => state.cart);
-  const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const { isLoggedIn } = useContext(AuthContext)
+  const cart = useSelector((state) => state.cart)
+  const { cartTotalQuantity } = useSelector((state) => state.cart)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getTotals());
-  }, [dispatch, cart]);
+    dispatch(getTotals())
+  }, [dispatch, cart])
 
   const handleLogout = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      const res = await axios.get("http://localhost:5000/logout");
-      if (res.status === 200)
-        return res.data && window.location.replace("/login");
+      const res = await axios.get('http://localhost:5000/logout')
+      if (res.status === 200) return res.data && window.location.replace('/')
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light text-white">
@@ -59,28 +58,32 @@ const Navbar = () => {
                 )}
               </li>
               <li className="nav-item">
-                {isLoggedIn === "user" || isLoggedIn === "owner" ? (
+                {isLoggedIn === 'user' || isLoggedIn === 'owner' ? (
                   <Link className="nav-link" to="products">
                     Product
                   </Link>
                 ) : null}
               </li>
               <li className="nav-item">
-                {isLoggedIn === "supervisor" || isLoggedIn === "owner" ? (
+                {isLoggedIn === 'manager' ||
+                isLoggedIn === 'supervisor' ||
+                isLoggedIn === 'owner' ? (
                   <Link className="nav-link" to="employees">
                     Employees
                   </Link>
                 ) : null}
               </li>
               <li className="nav-item">
-                {isLoggedIn === "manager" || isLoggedIn === "owner" ? (
+                {isLoggedIn === 'manager' ||
+                isLoggedIn === 'supervisor' ||
+                isLoggedIn === 'owner' ? (
                   <Link className="nav-link" to="/materials">
                     Material
                   </Link>
                 ) : null}
               </li>
               <li className="nav-item">
-                {isLoggedIn === "owner" && (
+                {isLoggedIn === 'owner' && (
                   <Link className="nav-link" to="/users">
                     Users
                   </Link>
@@ -95,7 +98,7 @@ const Navbar = () => {
               </li>
             </ul>
 
-            {!isLoggedIn && (
+            {/* {!isLoggedIn && (
               <>
                 <Link className="btn btn-primary" to="/login">
                   <span>Login</span>
@@ -104,8 +107,8 @@ const Navbar = () => {
                   <span>Register</span>
                 </Link>
               </>
-            )}
-            {isLoggedIn === "user" && (
+            )} */}
+            {isLoggedIn === 'user' && (
               <Link className="pe-3 prouctCart" to="/cart">
                 <AiOutlineShoppingCart size={40} />
                 <span className="bag-quantity">
@@ -115,7 +118,7 @@ const Navbar = () => {
             )}
             {isLoggedIn && (
               <Link
-                className="btn btn-primary"
+                className="btn btn-danger"
                 onClick={handleLogout}
                 to="/login"
               >
@@ -126,7 +129,7 @@ const Navbar = () => {
         </div>
       </nav>
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

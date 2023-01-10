@@ -1,36 +1,36 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import styles from "./EditEmp.module.css";
-import { useParams } from "react-router-dom";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import styles from './EditEmp.module.css'
+import { useParams } from 'react-router-dom'
 
 const EditEmp = () => {
-  const { id } = useParams();
+  const { id } = useParams()
 
-  const [name, setName] = useState();
-  const [experience, setExpreience] = useState();
-  const [address, setaddress] = useState();
-  const [endDate, setEndDate] = useState();
-  const [idCard, setidCard] = useState();
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
+  const [name, setName] = useState()
+  const [experience, setExpreience] = useState()
+  const [address, setaddress] = useState()
+  const [endDate, setEndDate] = useState()
+  const [idCard, setidCard] = useState()
+  const [email, setEmail] = useState()
+  const [phone, setPhone] = useState()
 
   useEffect(() => {
     const getsingleuser = async () => {
-      const res = await axios.get(`http://localhost:5000/employees/${id}`);
-      setName(res.data.name);
-      setExpreience(res.data.experience);
-      setaddress(res.data.address);
-      setEndDate(res.data.endDate);
-      setidCard(res.data.idCard);
-      setEmail(res.data.email);
-      setPhone(res.data.phone);
-    };
-    getsingleuser();
-  }, [id]);
+      const res = await axios.get(`http://localhost:5000/employees/${id}`)
+      setName(res.data.name)
+      setExpreience(res.data.experience)
+      setaddress(res.data.address)
+      setEndDate(res.data.endDate)
+      setidCard(res.data.idCard)
+      setEmail(res.data.email)
+      setPhone(res.data.phone)
+    }
+    getsingleuser()
+  }, [id])
 
   async function handleUpdateEmp(e) {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const res = await axios.put(`http://localhost:5000/employees/${id}`, {
         name,
@@ -40,13 +40,20 @@ const EditEmp = () => {
         email,
         endDate,
         idCard,
-      });
-      if (res.data.message) {
-        toast(res.data.message);
-        res.status(200) && window.location.replace("/employees");
+      })
+      // console.log(res.status)
+      // if (res.status === 400) {
+      //   toast.error(res.data.message)
+      // }
+      // if (!res.statusCode === 200) {
+      //   toast.success(res.data.message)
+      // }
+      if (res.data) {
+        toast(res.data.message)
+        // res.data && window.location.replace('/employees')
       }
     } catch (error) {
-      toast(error);
+      toast(error)
     }
   }
 
@@ -55,7 +62,7 @@ const EditEmp = () => {
       <form onSubmit={handleUpdateEmp}>
         <h5>Employee Details</h5>
         <br />
-        <div className="mb-3" style={{ display: "flex" }}>
+        <div className="mb-3" style={{ display: 'flex' }}>
           <input
             type="text"
             placeholder="Name"
@@ -71,8 +78,8 @@ const EditEmp = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </div>{" "}
-        <div class="mb-3" style={{ display: "flex" }}>
+        </div>{' '}
+        <div class="mb-3" style={{ display: 'flex' }}>
           <input
             type="tel"
             placeholder="Phone"
@@ -87,8 +94,8 @@ const EditEmp = () => {
             className="form-control mx-2"
             value={idCard}
           />
-        </div>{" "}
-        <div class="mb-3" style={{ display: "flex" }}>
+        </div>{' '}
+        <div class="mb-3" style={{ display: 'flex' }}>
           <input
             type="text"
             placeholder="Experience"
@@ -117,11 +124,11 @@ const EditEmp = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Add Employee
+          Update Employee
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default EditEmp;
+export default EditEmp

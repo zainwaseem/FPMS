@@ -7,18 +7,15 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, seterror] = useState(false);
-  // const [message, setMessage] = useState(``);
   const handleLogin = async (e) => {
     e.preventDefault();
-    // seterror(false);
     try {
       const res = await axios.post("http://localhost:5000/login", {
         email,
         password,
       });
       if (res.data.message) {
-        // seterror(true);
+        toast(res.data.message);
         console.log(res.data.message);
       }
       if (!res.status === 200) {
@@ -30,11 +27,7 @@ const Login = () => {
       }
     } catch (error) {
       toast.error(`Something Went Wrong`);
-      // seterror(true);
     }
-    setInterval(() => {
-      // seterror(false);
-    }, 5000);
   };
   return (
     <div className={styles.login}>
@@ -44,9 +37,9 @@ const Login = () => {
         <label className="ps-2">Email</label>
         <input
           type="text"
-          value={email}
-          className="form-control"
           required={true}
+          className="form-control"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="email@nazran.com"
         />

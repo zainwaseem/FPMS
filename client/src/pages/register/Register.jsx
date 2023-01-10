@@ -50,11 +50,11 @@ const Register = () => {
               Name
             </label>
             <input
-              value={values.name}
               type="text"
               name="name"
               onBlur={handleBlur}
               onChange={handleChange}
+              value={values.name}
               class="form-control"
               required={true}
               id="exampleInputEmail1"
@@ -70,12 +70,12 @@ const Register = () => {
               Email
             </label>
             <input
-              value={values.email}
-              name="email"
               type="email"
+              name="email"
+              value={values.email}
               onChange={handleChange}
-              required={true}
               onBlur={handleBlur}
+              required={true}
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
@@ -91,9 +91,9 @@ const Register = () => {
             <input
               value={values.password}
               name="password"
+              type="password"
               onChange={handleChange}
               onBlur={handleBlur}
-              type="password"
               class="form-control"
               required={true}
               id="exampleInputPassword1"

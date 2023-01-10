@@ -1,53 +1,53 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import Banner from "./components/Banner";
-import Navbar from "./components/Navbar";
-import Login from "./pages/login/Login";
-import Product from "./pages/product/Product.jsx";
-import User from "./pages/users/User";
-import EditUser from "./pages/users/EditUser";
-import Employee from "./pages/employees/Employee";
-import { useContext } from "react";
-import AuthContext from "./context/Authcontext";
-import AddUser from "./pages/addUser/AddUser";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import './App.css'
+import Banner from './components/Banner'
+import Navbar from './components/Navbar'
+// import Login from "./pages/login/Login";
+// import Register from "./pages/register/Register";
+import Product from './pages/product/Product.jsx'
+import User from './pages/users/User'
+import EditUser from './pages/users/EditUser'
+import Employee from './pages/employees/Employee'
+import { useContext } from 'react'
+import AuthContext from './context/Authcontext'
+import AddUser from './pages/addUser/AddUser'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 // import SideBar from "./components/SideBar/SideBar.jsx";
-import Material from "./pages/Material/Material";
-import AddEmp from "./pages/employees/AddEmp";
-import Error from "./components/Error/Error";
-import Cart from "./pages/product/Cart";
-import Register from "./pages/register/Register";
-import AddProduct from "./pages/product/AddProduct";
-import EditEmp from "./pages/employees/EditEmp";
-import Footer from "./components/footer/Footer";
-import Spinner from "./components/Spinner/Spinner";
-import Orders from "./pages/Orders/Orders.jsx";
+import Material from './pages/Material/Material'
+import AddEmp from './pages/employees/AddEmp'
+import Error from './components/Error/Error'
+import Cart from './pages/product/Cart'
+import AddProduct from './pages/product/AddProduct'
+import EditEmp from './pages/employees/EditEmp'
+import Footer from './components/footer/Footer'
+import Spinner from './components/Spinner/Spinner'
+import Orders from './pages/Orders/Orders.jsx'
 
 function App() {
-  const { isLoggedIn } = useContext(AuthContext);
-  console.log(isLoggedIn);
+  const { isLoggedIn } = useContext(AuthContext)
+  console.log(isLoggedIn)
   // const [role, setRole] = useState();
   if (isLoggedIn) {
     toast.success(`logging you in as a ` + isLoggedIn, {
       autoClose: 1000,
       position: `bottom-left`,
-    });
+    })
   }
   return (
     <>
       <BrowserRouter>
-        <Navbar />
         {/* <SideBar> */}
+        <Navbar />
         <Routes>
-          {!isLoggedIn && (
+          {/* {!isLoggedIn && (
             <>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </>
-          )}
+          )} */}
           <Route path="/" element={<Banner />} />
-          {isLoggedIn === "owner" ? (
+          {isLoggedIn === 'owner' ? (
             <>
               <Route path="/spin" element={<Spinner />} />
               <Route path="/products" element={<Product />} />
@@ -62,22 +62,23 @@ function App() {
               {/* <Route path="/addemployee" element={<AddEmp />} /> */}
             </>
           ) : null}
-          {isLoggedIn === "manager" ? (
+          {isLoggedIn === 'manager' ? (
             <>
               <Route path="/orders" element={<Product />} />
               <Route path="/materials" element={<Material />} />
             </>
           ) : null}
-          {isLoggedIn === "supervisor" ? (
+          {isLoggedIn === 'supervisor' ? (
             <>
               <Route path="/orders" element={<Orders />} />
+              <Route path="/materials" element={<Material />} />
 
               <Route path="/employees" element={<Employee />} />
               <Route path="/addemployee" element={<AddEmp />} />
               <Route path="/:id" element={<EditEmp />} />
             </>
           ) : null}
-          {isLoggedIn === "user" ? (
+          {isLoggedIn === 'user' ? (
             <>
               <Route path="/products" element={<Product />} />
               <Route path="/orders" element={<Orders />} />
@@ -88,7 +89,9 @@ function App() {
               <Route path="/products" element={<Product />} />
             </>
           ) : null}
-          <Route path="*" element={<Error />} />
+          {setTimeout(() => {
+            ;<Route path="*" element={<Error />} />
+          }, [1000])}
         </Routes>
 
         <ToastContainer
@@ -101,12 +104,12 @@ function App() {
           draggable
           theme="dark"
         />
+        <Footer />
         {/* </SideBar> */}
         {/* <Banner /> */}
-        <Footer />
       </BrowserRouter>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
