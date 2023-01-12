@@ -18,6 +18,7 @@ const Employee = () => {
 
   const [employees, setEmployees] = useState([])
   const [query, setQuery] = useState('')
+
   useEffect(() => {
     const userfunc = async () => {
       try {
@@ -49,13 +50,13 @@ const Employee = () => {
         {/* <br /> */}
         <div class="input-group">
           <div class="form-outline d-flex w-100 justify-content-between">
-            <h6 className="ms-5 ">Total Employees: {employees.length}</h6>
+            <h6 className="ms-5 pt-1">Total Employees: {employees.length}</h6>
             <input
               id="search-input"
               placeholder="Serach Employee..."
               onChange={(e) => setQuery(e.target.value)}
               type="search"
-              className="form-control  me-4 w-25"
+              className="form-control mt-1 me-4 w-25"
             />
           </div>
         </div>
@@ -102,7 +103,7 @@ const Employee = () => {
               <h3 className={styles.profileName}>{u.name}</h3>
               <p className={styles.about}>
                 <tr>
-                  <td className="ps-3">{<AiTwotoneMail />}</td>
+                  <td className="ps-3 ">{<AiTwotoneMail />}</td>
                   <td className="ps-3">{u.email}</td>
                 </tr>
                 <br />

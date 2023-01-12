@@ -20,23 +20,23 @@ const Banner = () => {
       <div className={styles.banner}>
         {isLoggedIn === 'owner' ? (
           <div className={styles.contain}>
-            <div className={styles.box} style={{ background: '#E31C24' }}>
+            <div className={styles.box} style={{ background: '#73B7FC' }}>
               <h3>Users</h3>
               <span>4</span>
             </div>
-            <div className={styles.box} style={{ background: '#026EB5' }}>
+            <div className={styles.box} style={{ background: '#1CBD9D' }}>
               <h3>Employees</h3>
               <span>44</span>
             </div>
-            <div className={styles.box} style={{ background: '#38AE48' }}>
+            <div className={styles.box} style={{ background: '#FACD78' }}>
               <h3>Products</h3>
               <span>{products.items.length}</span>
             </div>
-            <div className={styles.box} style={{ background: '#E31C24' }}>
+            <div className={styles.box} style={{ background: '#73B7FC' }}>
               <h3>Orders</h3>
               <span>{products.items.length}</span>
             </div>
-            <div className={styles.box} style={{ background: '#026EB5' }}>
+            <div className={styles.box} style={{ background: '#1CBD9D' }}>
               <h3>Inventory</h3>
               <span>90</span>
             </div>

@@ -27,6 +27,7 @@ const AddEmployee = async (req, res, next) => {
         message: 'NIC contains 13 digits',
       })
     }
+    // return true if exist othervise false
     const exist = await Employee.findOne({ email })
     if (exist) {
       return res.json({ message: 'Email already exists' })

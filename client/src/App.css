@@ -25,7 +25,6 @@ body {
   font-weight: 900;
 }
 
-
 /* 
 textarea:focus,
 input[type="text"]:focus,
@@ -52,3 +51,23 @@ input[type="color"]:focus,
   outline: none !important;
   border-bottom: 4px solid red !important;
 } */
+
+.btn-primary {
+  background-color: #1cbd9d;
+  font-weight: 600;
+  border: none;
+}
+.btn-success {
+  background-color: #1cbd9d;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #73b7fc;
+  color: #000;
+}
+
+button a Link NavLink {
+  cursor: pointer;
+}

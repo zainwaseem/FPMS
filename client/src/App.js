@@ -23,6 +23,7 @@ import EditEmp from './pages/employees/EditEmp'
 import Footer from './components/footer/Footer'
 import Spinner from './components/Spinner/Spinner'
 import Orders from './pages/Orders/Orders.jsx'
+import EditProduct from './pages/product/EditProduct.jsx'
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext)
@@ -56,6 +57,10 @@ function App() {
               <Route path="/orders" element={<Orders />} />
               <Route path="/users" element={<User />} />
               <Route path="/:id" element={<EditUser />} />
+              <Route
+                path="products/editproduct/:id"
+                element={<EditProduct />}
+              />
               <Route path="/employees" element={<Employee />} />
               <Route path="/adduser" element={<AddUser />} />
               <Route path="/materials" element={<Material />} />

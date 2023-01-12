@@ -5,7 +5,7 @@ import styles from './EditUser.module.css'
 import { useParams } from 'react-router-dom'
 
 const EditUser = () => {
-  const { id } = useParams()
+  const { id } = useParams();
 
   const [name, setName] = useState()
   const [role, setRole] = useState()

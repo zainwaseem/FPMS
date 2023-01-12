@@ -28,6 +28,7 @@ router.get(
   isAuthorized("owner", "supervisor"),
   getEmployee
 );
+//update
 router.put(
   "/employees/:id",
   isAuthenticated,

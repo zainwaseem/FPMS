@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useContext, useEffect } from 'react'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { BiLogOutCircle } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import AuthContext from '../context/Authcontext'
 import logo from '../img/logo.png'
@@ -122,7 +123,8 @@ const Navbar = () => {
                 onClick={handleLogout}
                 to="/login"
               >
-                <span>Logout</span>
+                <BiLogOutCircle size={30} toolTip="logout" />
+                {/* <span>Logout</span> */}
               </Link>
             )}
           </div>

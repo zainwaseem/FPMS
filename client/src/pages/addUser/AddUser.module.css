@@ -6,7 +6,13 @@
       #b1dae78a,
       rgba(136, 221, 187, 0.555)
     ),
-    url("../../img/Banner1.jpg");
+    url('../../img/Banner1.jpg');
+
+  background-image: radial-gradient(
+    circle farthest-corner at 7.2% 13.6%,
+    rgba(37, 249, 245, 0.158) 0%,
+    rgba(8, 70, 218, 0.6) 90%
+  );
 
   background-position: center center;
   background-size: cover;
@@ -14,27 +20,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .container .adduser {
   padding: 10px 0px;
   width: 18rem;
-  background-color: rgb(195, 221, 211);
+  /* background-color: rgb(195, 221, 211); */
+  background-image: radial-gradient(
+    circle farthest-corner at 7.2% 13.6%,
+    rgba(8, 70, 218, 0.2) 85%,
+    rgba(8, 70, 218, 0.6) 50%
+  );
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin: auto;
-    
 }
 
 .loginButton {
-  background-color: #234567;
+  /* background-color: #234567; */
+  background-color: rgba(8, 70, 218, 0.6);
   border: none;
   cursor: pointer;
-  color: #b1dae7;
+  color: #fff;
   font-weight: bolder;
   border-radius: 10px;
   padding: 10px;

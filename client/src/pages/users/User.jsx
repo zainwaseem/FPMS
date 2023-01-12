@@ -36,6 +36,7 @@ const User = () => {
       <div className={styles.userspage}>
         <Link to="/adduser" className="btn btn-primary ms-5 mt-3">
           Add User
+          {/* <MdPersonAddAlt1 size={40} /> */}
           {/* <div className={styles.cardslist} class="rotate-vert-center">
             <div className={styles.card}>
               <div className={styles.AddButton}>
@@ -49,7 +50,7 @@ const User = () => {
         </Link>
         <div>
           <div className="input-group d-flex w-100 justify-content-between">
-            <h6 className="ms-5 ps-2 mt-2">Total Users: {users.length}</h6>
+            <h6 className="ms-5 mt-2">Total Users: {users.length}</h6>
             <div className="form-outline">
               <input
                 id="search-input"

@@ -1,44 +1,44 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import styles from "./AddUser.module.css";
+import axios from 'axios'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify'
+import styles from './AddUser.module.css'
 
 const AddUser = () => {
-  const [name, setName] = useState();
-  const [role, setRole] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [error, seterror] = useState();
+  const [name, setName] = useState()
+  const [role, setRole] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [error, seterror] = useState()
 
   const handleOptionChane = async (e) => {
-    console.log(e.target.value);
-    if (e.target.value === "role") {
-      return toast("Please select any role");
+    console.log(e.target.value)
+    if (e.target.value === 'role') {
+      return toast('Please select any role')
     }
-    await setRole(e.target.value);
-  };
+    await setRole(e.target.value)
+  }
   async function hanldeSubmit(e) {
-    e.preventDefault();
-    seterror(false);
+    e.preventDefault()
+    seterror(false)
     try {
-      const res = await axios.post("http://localhost:5000/register", {
+      const res = await axios.post('http://localhost:5000/register', {
         name,
         role,
         email,
         password,
-      });
+      })
       if (res.data.message) {
-        seterror(true);
-        toast(res.data.message);
-        res.data && window.location.replace("/users");
+        seterror(true)
+        toast(res.data.message)
+        res.data && window.location.replace('/users')
       }
     } catch (err) {
-      seterror(true);
-      toast(error);
+      seterror(true)
+      toast(error)
     }
     setInterval(() => {
-      seterror(false);
-    }, 5000);
+      seterror(false)
+    }, 5000)
   }
 
   return (
@@ -119,7 +119,7 @@ const AddUser = () => {
         {/* <span classNameName="text-danger">{error && message}</span> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddUser;
+export default AddUser

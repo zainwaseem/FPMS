@@ -7,7 +7,7 @@ const AddProduct = async (req, res, next) => {
     let { title, desc, img, price, size } = req.body
 
     if (!title || !desc || !img || !price || !size) {
-      return res.status(401).json({
+      return res.json({
         message: 'Please provide all details of the product',
       })
     }
@@ -17,7 +17,7 @@ const AddProduct = async (req, res, next) => {
       return res.json({ message: 'Product already exists' })
     }
     // cloudinary
-    const result = await cloudinary.uploader.upload(img, {
+    let result = await cloudinary.uploader.upload(img, {
       folder: 'products',
     })
     // console.log(result);
@@ -61,8 +61,22 @@ const getProduct = async (req, res, next) => {
 }
 
 const updateProduct = async (req, res, next) => {
-  const { title, desc, img, price, size } = req.body
+  let { title, desc, img, price, size } = req.body
+  if (!title || !desc || !img || !price || !size) {
+    return res.json({
+      message: 'Please provide all details of the product',
+    })
+  }
 
+  // cloudinary
+  let result = await cloudinary.uploader.upload(img, {
+    folder: 'products',
+  })
+  // console.log(result);
+  img = {
+    public_id: result.public_id,
+    secure_url: result.secure_url,
+  }
   try {
     await Product.findByIdAndUpdate(req.params.id, {
       title,
@@ -87,6 +101,15 @@ const deleteProduct = async (req, res, next) => {
 
   try {
     const daletedProduct = await Product.findByIdAndDelete(req.params.id)
+    const deleteImg = await cloudinary.uploader.destroy(deleteProduct)
+
+    // await cloudinary.uploader.destroy(deleteProduct, function (
+    //   error,
+    //   result,
+    // ) {
+    //   res.json({ result, error })
+    // })
+
     return res.json({ message: `Product has been deleted` })
   } catch (error) {
     next(error)

@@ -28,7 +28,7 @@
 .box:nth-child(even) {
   margin-top: 40px;
   background-color: #eff0f1b7;
-  color: #000;
+  /* color: #000; */
   width: 320px;
   border-radius: 5px;
   display: flex;
@@ -44,8 +44,6 @@
 }
 .box:nth-child(odd) {
   margin-top: 40px;
-  background-color: #eff0f1b7;
-  color: white;
   width: 320px;
   border-radius: 5px;
   display: flex;
@@ -73,8 +71,6 @@ background-image: linear-gradient( 109.6deg,  rgba(15,2,2,1) 11.2%, rgba(36,163,
 }
 .box:last-of-type {
   margin-top: 40px;
-  background-color: #eff0f1b7;
-  color: white;
   width: 320px;
   border-radius: 5px;
   display: flex;

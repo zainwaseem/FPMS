@@ -24,7 +24,7 @@ const LoginSignup = () => {
     validationSchema: Yup.object({
       name: Yup.string().required(`Name is required`),
       email: Yup.string()
-        .email(`Please provide a valid email`)
+        .email(`Requires a valid email`)
         .required(`Email is required`),
       password: Yup.string()
         .min(8, `Please provide at least 8 letters`)
@@ -59,6 +59,7 @@ const LoginSignup = () => {
         email,
         password,
       })
+      console.log(res)
       if (res.data.message) {
         toast(res.data.message)
         console.log(res.data.message)
@@ -99,7 +100,7 @@ const LoginSignup = () => {
               className="loginInputs p-3 "
               type="text"
               // name="txt"
-              placeholder="User name"
+              placeholder="Name"
               required=""
               name="name"
               onBlur={handleBlur}

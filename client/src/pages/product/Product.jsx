@@ -6,10 +6,11 @@ import { useGetAllProductsQuery } from '../../features/products/productsApi'
 import { addToCart } from '../../features/products/cartSlice'
 import { Link } from 'react-router-dom'
 import AuthContext from '../../context/Authcontext'
-import { MdDelete } from 'react-icons/md'
+import { MdAddShoppingCart, MdDelete } from 'react-icons/md'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import Spinner from '../../components/Spinner/Spinner'
+import { AiFillEdit } from 'react-icons/ai'
 
 const Product = () => {
   const dispatch = useDispatch()
@@ -37,7 +38,8 @@ const Product = () => {
       <div className={styles.productContainer}>
         {isLoggedIn === 'owner' && (
           <Link className="ms-4  mt-2 btn btn-primary" to="/newproduct">
-            Add New Product
+            Add Product 
+            <MdAddShoppingCart />
           </Link>
         )}
         {isLoading ? (
@@ -81,12 +83,21 @@ const Product = () => {
                       </button>
                     )}{' '}
                     {isLoggedIn === 'owner' && (
-                      <span
-                        className="btn btn-danger"
-                        onClick={() => handleDelete(product._id)}
-                      >
-                        <MdDelete size={25} style={{ cursor: 'pointer' }} />
-                      </span>
+                      <>
+                        <Link
+                          class="  btn btn-success"
+                          to={`editproduct/${product._id}`}
+                          className={styles.EditLink}
+                        >
+                          <AiFillEdit size={25} />
+                        </Link>
+                        <span
+                          className="mt-1 btn btn-danger"
+                          onClick={() => handleDelete(product._id)}
+                        >
+                          <MdDelete size={25} style={{ cursor: 'pointer' }} />
+                        </span>
+                      </>
                     )}
                   </div>
                 ))}
